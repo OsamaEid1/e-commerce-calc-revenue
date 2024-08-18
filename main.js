@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setTotalCustomerPay();
     };
     const setCommissionFee = () => {
-        commissionFee.value = totalCustomerPay.value * productCategory.value;
+        commissionFee.value = (totalCustomerPay.value * productCategory.value).toFixed(2);
         // Set 14% Tax On Commission Fee
         commissionTax.value = (commissionFee.value * 0.14).toFixed(2);
     };
