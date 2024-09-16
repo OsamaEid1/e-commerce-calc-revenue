@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const pricePerUnitInput = document.getElementById("pricePerUnit");
     const quantityInput = document.getElementById("quantity");
     const totalPriceInput = document.getElementById("totalPrice");
+    const customerShippingFee = document.getElementById("customerShippingFee");
     const totalCustomerPay = document.getElementById("totalCustomerPay");
     const weightInput = document.getElementById("weight");
     const lengthInput = document.getElementById("length");
@@ -33,8 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setTotalCustomerPay();
     };
     const setTotalCustomerPay = () => {
-        const customerShippingFee = 26;
-        totalCustomerPay.value = (+totalPriceInput.value + customerShippingFee).toFixed(2);
+        totalCustomerPay.value = (+totalPriceInput.value + +customerShippingFee.value).toFixed(2);
 
         setCommissionFee();
     };
@@ -114,15 +114,23 @@ document.addEventListener("DOMContentLoaded", function () {
         // Calculate Net Income
         netIncome.value = (totalCustomerPay.value - commissionFee.value - commissionTax.value - easyShippingFee.value - shippingTax.value).toFixed(2);
         // Calculate Net Profit
-        netProfit.value = (netIncome.value - costPerUnit.value).toFixed(2);
+        netProfit.value = (netIncome.value - (costPerUnit.value * quantity.value)).toFixed(2);
         // Calculate Profit Margin
         profitMargin.value = ((netProfit.value / costPerUnit.value) * 100).toFixed(2) + "%";
     };
 
 
     // Add event listeners to calc total price when inputs change
+    costPerUnit.addEventListener("input", calcTotalPrice);
     pricePerUnitInput.addEventListener("input", calcTotalPrice);
     quantityInput.addEventListener("input", calcTotalPrice);
+
+    customerShippingFee.addEventListener("input", setTotalCustomerPay);
+    customerShippingFee.addEventListener("input", (e) => {
+        const fee = e.target.value;
+        if (fee > 26 || fee < -1) 
+            customerShippingFee.value = "26";
+    });
 
     totalCustomerPay.addEventListener("input", setCommissionFee);
 
