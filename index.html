@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revenue Calculator | Amazon</title>
+    <link rel="stylesheet" href="./css/output.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="content-box">
+        <!-- Start Header -->
+        <div class="flex">
+            <a href=""
+                class="
+                    block w-1/2 p-2 me-px rounded-lg text-center text-2xl font-extrabold
+                    bg-slate-300
+                "
+            >
+                أمازون
+            </a>
+            <a href="./jumia/index.html"
+                class="
+                    block flex-1 p-2 rounded-lg text-center text-2xl font-extrabold
+                    bg-slate-100 duration-300 hover:bg-slate-300
+                "
+            >
+                جوميا
+            </a>
+        </div>
+        <!-- End Header -->
+        <!-- Start Amazon FBM -->
+        <h2 class="text-2xl font-bold text-center mt-5">حساب الأرباح على أمازون FBM</h2>
+        <div class="grid grid-cols-1 p-6 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <!-- Right Column -->
+            <table>
+                <tbody>
+                    <!-- Row 1 -->
+                    <tr class="border-b">
+                        <td class="main-cell">تكلفة القطعة</td>
+                        <td class="input-cell">
+                            <input
+                                id="costPerUnit"
+                                class="main-input"
+                                type="number" 
+                                min="0" 
+                                placeholder="0" 
+                                autofocus 
+                            />
+                        </td>
+                    </tr>
+                    <!-- Row 2 -->
+                    <tr class="border-b">
+                        <td class="main-cell">سعر القطعة</td>
+                        <td class="input-cell"><input type="number" min="0" placeholder="0" id="pricePerUnit"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 3 -->
+                    <tr class="border-b">
+                        <td class="main-cell">عدد القطع</td>
+                        <td class="input-cell"><input type="number" min="1" value="1" id="quantity"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 4 -->
+                    <tr class="border-b">
+                        <td class="main-cell">إجمالي سعر القطع</td>
+                        <td class="input-cell">
+                            <input type="number"disabled value="0" id="totalPrice"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="main-cell">رسوم شحن العميل</td>
+                        <td class="input-cell"><input type="number" min="0" max="26" value="26" id="customerShippingFee"
+                                class="main-input bg-slate-100">
+                        </td>
+                    </tr>
+                    <!-- Row 5 -->
+                    <tr class="border-b">
+                        <td class="main-cell">فئة المنتج</td>
+                        <td class="input-cell">
+                            <select
+                                id="productCategory"
+                                class="w-full p-2 cursor-pointer border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            >
+                                <option value="0.13">ألعاب 13%</option>
+                                <option value="0.08">منتجات الأطفال 8%</option>
+                                <option value="0.15">منتجات التجميل 15%</option>
+                                <option value="0.11">الصحة والعناية الشخصية 11%</option>
+                                <option value="0.15">الملابس والأحذية 15%</option>
+                                <option value="0.11">المطبخ 11%</option>
+                                <option value="0.13">الأثاث 13%</option>
+                                <option value="0.13">منتجات المنزل 13%</option>
+                                <option value="0.15">أمتعة 15%</option>
+                                <option value="0.04">الهواتف 4%</option>
+                                <option value="0.06">الكاميرا 6%</option>
+                                <option value="0.06">أجهزة الكمبيوتر الشخصية 6%</option>
+                                <option value="0.08">الإلكترونيات الإستهلاكية 8%</option>
+                                <option value="0.12">الساعات 12%</option>
+                                <option value="0.11">منتجات المكاتب 11%</option>
+                                <option value="0.11">الرياضة 11%</option>
+                                <option value="0.11">الأدوات 11%</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Middle Column -->
+            <table>
+                <tbody>
+                    <tr class="border-b">
+                        <td class="main-cell">الوزن (بالكيلو)</td>
+                        <td class="input-cell"><input type="number" placeholder="0.250" min="0" id="weight"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 8 -->
+                    <tr class="border-b">
+                        <td class="main-cell">الطول</td>
+                        <td class="input-cell"><input type="number" min="0" placeholder="0" id="length"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 9 -->
+                    <tr class="border-b">
+                        <td class="main-cell">العرض</td>
+                        <td class="input-cell"><input type="number" min="0" placeholder="0" id="width"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 10 -->
+                    <tr>
+                        <td class="main-cell">الارتفاع</td>
+                        <td class="input-cell"><input type="number" min="0" placeholder="0" id="height"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 11 -->
+                    <tr class="border-b">
+                        <td class="main-cell">نوع الطرد</td>
+                        <td class="input-cell"><input type="text" disabled value="قياسي" id="packageType"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 12 -->
+                    <tr class="border-b">
+                        <td class="main-cell">إجمالي ما يدفعه العميل</td>
+                        <td class="input-cell"><input type="number" disabled value="0" min="0" id="totalCustomerPay"
+                                class="main-input">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Left Column -->
+            <table>
+                <tbody>
+                    <!-- Row 13 -->
+                    <tr class="border-b">
+                        <td class="main-cell">رسوم العمولة</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="commissionFee"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 14 -->
+                    <tr class="border-b">
+                        <td class="main-cell">ضريبة 14% على رسوم العمولة</td>
+                        <td class="input-cell">
+                            <input type="text" disabled value="0" id="commissionTax"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 15 -->
+                    <tr class="border-b">
+                        <td class="main-cell">رسوم الشحن السهل</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="easyShippingFee"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 16 -->
+                    <tr class="border-b">
+                        <td class="main-cell">ضريبة 14% على رسوم الشحن</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="shippingTax"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 17 -->
+                    <tr class="border-b">
+                        <td class="main-cell">صافي الإيراد</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="netIncome"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 18 -->
+                    <tr class="border-b">
+                        <td class="main-cell">صافي الربح</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="netProfit"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 19 -->
+                    <tr>
+                        <td class="main-cell">معدل الربح</td>
+                        <td class="input-cell"><input type="text" disabled value="0%" id="profitMargin"
+                                class="main-input">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End Amazon FBM -->
+    </div>
+    <!-- Start Footer -->
+    <p class="text-center mt-5">أُنشِئَ بال❤️ بواسطة
+        <a href="https://osamaeid1.github.io/Portfolio/" target="_blank" class="text-red-500 underline font-bold ms-1">أسامة</a>
+    </p>
+    <!-- End Footer -->
+    
+    <script src="amazon.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP34R4SESN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-GP34R4SESN');
+    </script>
+</body>
+</html>
