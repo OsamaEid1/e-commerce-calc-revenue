@@ -1,10 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Get input elements
+    // Get Input Elements
     const costPerUnit = document.getElementById("costPerUnit");
     const pricePerUnitInput = document.getElementById("pricePerUnit");
     const quantityInput = document.getElementById("quantity");
     const totalPriceInput = document.getElementById("totalPrice");
-    const weightInput = document.getElementById("weight");
     const packageType = document.getElementById("packageType");
     const shippingProcessingFee = document.getElementById("shippingProcessingFee");
     const commissionFee = document.getElementById("commissionFee");
@@ -28,41 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setCommissionFee(totalPrice);
     };
 
-    const calcShippingProcessingFee = (weight) => {
-        const MAX_WEIGHT_TO_BE_SMALL = 1; // In KG
-        const MAX_WEIGHT_TO_BE_Medium = 5; // In KG
-        const MAX_WEIGHT_TO_BE_Large = 30; // In KG
-
-        let fee = 0;
-        if (weight <= MAX_WEIGHT_TO_BE_SMALL) {
-            fee = 8;
-        } else if (weight <= MAX_WEIGHT_TO_BE_Medium) {
-            fee = 13
-        } else if (weight <= MAX_WEIGHT_TO_BE_Large) {
-            fee = 30
-        } else {
-            fee = 90
-        }
-
-        return fee;
-    };
-
-    const handleShippingProcessingFee = (weight) => {
-        // Get Appropriate Fee
-        const fee = calcShippingProcessingFee(weight);
-
-        // Set Package Type
-        for (let i = 0; i < packageType.options.length; i++) {
-            if(packageType.options[i].value == fee)
-                packageType.options[i].selected = true;
-        }
-
-        // Set Fee
-        shippingProcessingFee.value = fee * quantityInput.value;
-
-        calcProfitsNumbers();
-    }
-
     const setCommissionFee = (totalPrice) => {
         commissionFee.value = (totalPrice * productCategory.value).toFixed(2);
 
@@ -74,10 +38,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Calculate Net Income
         netIncome.value = (totalPriceInput.value - commissionFee.value - shippingProcessingFee.value - pickupFee).toFixed(2);
+        if (+netIncome.value < 0) netIncome.style.color = 'red';
+        else netIncome.style.color = 'green';
         // Calculate Net Profit
         netProfit.value = (netIncome.value - costPerUnit.value * quantity.value).toFixed(2);
+        if (+netProfit.value < 0) netProfit.style.color = 'red';
+        else netProfit.style.color = 'green';
         // Calculate Profit Margin
         profitMargin.value = ((netProfit.value / costPerUnit.value) * 100).toFixed(2) + "%";
+        if (+profitMargin.value.replace('%', '') < 0) profitMargin.style.color = 'red';
+        else profitMargin.style.color = 'green';
     };
 
 
@@ -86,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         input.addEventListener('input', calcTotalPrice)
     });
     // Handle Shipping Processing Order Fee
-    weightInput.addEventListener('input', (e) => handleShippingProcessingFee(e.target.value))
     packageType.addEventListener('change', (e) => {
         shippingProcessingFee.value = e.target.value * quantityInput.value;
         calcProfitsNumbers();
