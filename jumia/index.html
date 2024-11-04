@@ -138,18 +138,11 @@
                         </td>
                     </tr>
                     <tr class="border-b">
-                        <td class="main-cell">الوزن (بالكيلو)</td>
-                        <td class="input-cell"><input type="number" placeholder="0.250" min="0" id="weight"
-                                class="main-input">
-                        </td>
-                    </tr>
-                    <!-- Row 8 -->
-                    <tr class="border-b">
                         <td class="main-cell">نوع الطرد</td>
                         <td class="input-cell">
                             <select 
                                 id="packageType"
-                                class="bg-slate-100 w-full p-2 cursor-pointer border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                class="w-full p-2 cursor-pointer border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 >
                                 <option value="8">منتجات صغيرة الحجم & الموضة والأزياء - 8ج</option>
                                 <option value="13">منتجات متوسطة الحجم - 13ج</option>
@@ -158,7 +151,13 @@
                             </select>
                         </td>
                     </tr>
-                    <!-- Row 12 -->
+                    <tr class="border-b">
+                        <td class="main-cell">رسوم تجهيز الطلبات</td>
+                        <td class="input-cell">
+                            <input type="number" disabled value="8" min="0" id="shippingProcessingFee"
+                                class="main-input">
+                        </td>
+                    </tr>
                     <tr class="">
                         <td class="main-cell">Pick Up؟ <span class="text-orange-400">15ج</span></td>
                         <td class="input-cell font-medium">
@@ -178,20 +177,11 @@
             <table>
                 <tbody>
                     <tr class="border-b">
-                        <td class="main-cell">رسوم تجهيز الطلبات</td>
-                        <td class="input-cell">
-                            <input type="number" disabled value="8" min="0" id="shippingProcessingFee"
-                                class="main-input">
-                        </td>
-                    </tr>
-                    <!-- Row 13 -->
-                    <tr class="border-b">
                         <td class="main-cell">رسوم العمولة</td>
                         <td class="input-cell"><input type="text" disabled value="0" id="commissionFee"
                                 class="main-input">
                         </td>
                     </tr>
-                    <!-- Row 17 -->
                     <tr class="border-b">
                         <td class="main-cell">صافي الإيراد</td>
                         <td class="input-cell"><input type="text" disabled value="0" id="netIncome"
