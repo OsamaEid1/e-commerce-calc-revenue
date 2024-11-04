@@ -112,10 +112,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const calcProfitsNumbers = () => {
         // Calculate Net Income
         netIncome.value = (totalCustomerPay.value - commissionFee.value - commissionTax.value - easyShippingFee.value - shippingTax.value).toFixed(2);
+        if (+netIncome.value < 0) netIncome.style.color = 'red';
+        else netIncome.style.color = 'green';
         // Calculate Net Profit
         netProfit.value = (netIncome.value - (costPerUnit.value * quantity.value)).toFixed(2);
+        if (+netProfit.value < 0) netProfit.style.color = 'red';
+        else netProfit.style.color = 'green';
         // Calculate Profit Margin
         profitMargin.value = ((netProfit.value / costPerUnit.value) * 100).toFixed(2) + "%";
+        if (+profitMargin.value.replace('%', '') < 0) profitMargin.style.color = 'red';
+        else profitMargin.style.color = 'green';
     };
 
 
