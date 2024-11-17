@@ -4,6 +4,7 @@
 
 body {
     padding: 2rem/* 32px */;
+    padding-bottom: 0;
     --tw-bg-opacity: 1;
     background-color: rgb(243 244 246 / var(--tw-bg-opacity))/* #f3f4f6 */;
     min-height: 100vh;
