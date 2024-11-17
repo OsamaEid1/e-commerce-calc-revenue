@@ -1,3 +1,5 @@
+import { getSavedPreferences, savePreferences } from "../helpers/main.js";
+
 document.addEventListener('DOMContentLoaded', () => {
     // Get Input Elements
     const costPerUnit = document.getElementById("costPerUnit");
@@ -45,9 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (+netProfit.value < 0) netProfit.style.color = 'red';
         else netProfit.style.color = 'green';
         // Calculate Profit Margin
-        profitMargin.value = ((netProfit.value / costPerUnit.value) * 100).toFixed(2) + "%";
-        if (+profitMargin.value.replace('%', '') < 0) profitMargin.style.color = 'red';
-        else profitMargin.style.color = 'green';
+        if (costPerUnit.value == 0) profitMargin.value = '0%';
+        else {
+            profitMargin.value = ((netProfit.value / costPerUnit.value) * 100).toFixed(2) + "%";
+            if (+profitMargin.value.replace('%', '') < 0) profitMargin.style.color = 'red';
+            else profitMargin.style.color = 'green';
+        }
     };
 
 
@@ -67,5 +72,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle Profit Stats
     [costPerUnit, yesInput, noInput].forEach(input => {
         input.addEventListener('input', calcProfitsNumbers)
+    });
+
+
+
+    // Handle Preferences
+    // Get
+    const handleSetSavedPreferences = (preferences) => {
+        const targetProductCategory = Array.from(productCategory.options).find(option => (option.textContent === preferences.category?.name) && (option.value === preferences.category?.value));
+        if (targetProductCategory) targetProductCategory.selected = true;
+        const targetPackageType = Array.from(packageType.options).find(option => option.value === preferences.packageType);
+        console.log(targetPackageType);
+        if (targetPackageType) {
+            targetPackageType.selected = true
+            shippingProcessingFee.value = targetPackageType.value * quantityInput.value;
+        };
+        if (preferences.isDealWithPickup) yesInput.checked = true;
+        else noInput.checked = true;
+        
+    };
+    const KEY = "jumia-revenue-calc-preferences";
+    const savedPreferences = getSavedPreferences(KEY);
+    if (savedPreferences) handleSetSavedPreferences(savedPreferences);
+
+    // Set
+    const savePreferencesBtn = document.getElementById("savePreferencesBtn");
+    savePreferencesBtn.addEventListener('click', () => {
+        const selectedCatgOpt = Array.from(productCategory.options).find(option => option.selected === true);
+        const preferences = {
+            category: {name: selectedCatgOpt.textContent, value: selectedCatgOpt.value},
+            packageType: packageType.value,
+            isDealWithPickup: yesInput.checked
+        };
+        savePreferences(KEY, preferences);
     });
 });
