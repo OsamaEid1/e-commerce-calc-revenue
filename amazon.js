@@ -1,5 +1,7 @@
+import { getSavedPreferences, savePreferences } from "./helpers/main.js";
+
 document.addEventListener("DOMContentLoaded", function () {
-    // Get input elements
+    // Get elements
     const costPerUnit = document.getElementById("costPerUnit");
     const pricePerUnitInput = document.getElementById("pricePerUnit");
     const quantityInput = document.getElementById("quantity");
@@ -143,4 +145,21 @@ document.addEventListener("DOMContentLoaded", function () {
     lengthInput.addEventListener("input", calcEasyShipping);
     widthInput.addEventListener("input", calcEasyShipping);
     heightInput.addEventListener("input", calcEasyShipping);
+    
+
+    // Handle Preferences
+    // Get
+    const KEY = "amz-revenue-calc-preferences";
+    const savedPreferences = getSavedPreferences(KEY);
+    if (savedPreferences?.category) {
+        const targetProductCategory = Array.from(productCategory.options).find(option => (option.textContent === savedPreferences.category?.name) && (option.value === savedPreferences.category?.value));
+        if (targetProductCategory) targetProductCategory.selected = true;
+    }
+
+    // Set
+    const savePreferencesBtn = document.getElementById("savePreferencesBtn");
+    savePreferencesBtn.addEventListener('click', () => {
+        const selectedCatgOpt = Array.from(productCategory.options).find(option => option.selected === true);
+        savePreferences(KEY, {category: {name: selectedCatgOpt.textContent, value: selectedCatgOpt.value}});
+    });
 });
