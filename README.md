@@ -12,7 +12,7 @@ The **E-Commerce Revenue Calculator** is a simple yet powerful tool that helps s
 ## 🚀 How to Use
 1. **Visit the website**: [E-Commerce Revenue Calculator](https://osamaeid1.github.io/e-commerce-calc-revenue/)
 2. **Select your platform** (Amazon, Jumia, or Noon)
-3. **Enter product details** (price, commission, shipping, etc.)
+3. **Enter product details** (price, category, order dimensions, etc.)
 4. **Get instant calculations** for revenue and profit
 5. **Adjust pricing strategies** to optimize earnings
 
