@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="حاسبة الأرباح | نون">
+    <meta property="og:description" content="احسب أرباحك وتكاليفك بدقة قبل تسعير منتجاتك على نون مصر. تجنب الخسائر واتخذ قرارات تسعير ذكية!">
+    <meta property="og:image"
+        content="https://firebasestorage.googleapis.com/v0/b/toys-n-more-18.appspot.com/o/website-images%2Fe-commerce-calc-revenue-preview.webp?alt=media&token=e9ee0a95-7a49-4899-a634-260a33edde9d">
+    <meta property="og:url" content="https://osamaeid1.github.io/e-commerce-calc-revenue/Noon/index.html">
+    <meta property="og:type" content="website">
+    <title>حاسبة الأرباح | نون</title>
+
+    <link rel="icon" href="../assets/favicon.ico" />
+    <link rel="stylesheet" href="../css/output.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!-- Start Main Content -->
+    <div class="content-box">
+        <!-- Start Header -->
+        <div class="flex">
+            <a href="../index.html"
+                class="
+                    block flex-1 p-2 mx-1 rounded-lg text-center text-2xl font-extrabold
+                    bg-slate-100 duration-300 hover:bg-slate-300
+                "
+            >
+                أمازون
+            </a>
+            <a href="../jumia/index.html"
+                class="
+                    block flex-1 p-2 me-1 rounded-lg text-center text-2xl font-extrabold
+                    bg-slate-100 duration-300 hover:bg-slate-300
+                "
+            >
+                جوميا
+            </a>
+            <a href=""
+                class="
+                    block flex-1 p-2 me-1 rounded-lg text-center text-2xl font-extrabold
+                    bg-slate-300 shadow-sm
+                "
+            >
+                نون
+            </a>
+        </div>
+        <!-- End Header -->
+        <!-- Start Noon FBP -->
+        <h2 class="text-2xl font-bold text-center mt-5">حساب الأرباح على نون FBP</h2>
+        <div class="grid grid-cols-1 p-6 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <!-- Right Column -->
+            <table>
+                <tbody>
+                    <!-- Row 1 -->
+                    <tr>
+                        <td class="main-cell">تكلفة القطعة</td>
+                        <td class="input-cell">
+                            <input
+                                id="costPerUnit"
+                                class="main-input"
+                                type="number" 
+                                min="0" 
+                                placeholder="0" 
+                                autofocus 
+                            />
+                        </td>
+                    </tr>
+                    <!-- Row 2 -->
+                    <tr>
+                        <td class="main-cell">سعر القطعة</td>
+                        <td class="input-cell"><input type="number" min="0" placeholder="0" id="pricePerUnit"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 3 -->
+                    <tr>
+                        <td class="main-cell">عدد القطع</td>
+                        <td class="input-cell"><input type="number" min="1" value="1" id="quantity"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 4 -->
+                    <tr>
+                        <td class="main-cell">إجمالي سعر القطع</td>
+                        <td class="input-cell">
+                            <input type="number"disabled value="0" id="totalPrice"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="main-cell">رسوم شحن العميل</td>
+                        <td class="input-cell"><input type="number" disabled min="0" max="25" value="25" id="customerShippingFee"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 5 -->
+                    <tr>
+                        <td class="main-cell">إجمالي ما يدفعه العميل</td>
+                        <td class="input-cell"><input type="number" disabled value="0" min="0" id="totalCustomerPay"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 5 -->
+                    <tr>
+                        <td class="main-cell">فئة المنتج</td>
+                        <td class="input-cell max-w-14">
+                            <div class="relative max-w-full ">
+                                <!-- Custom Select Button -->
+                                <div id="custom-select-button"
+                                    class="bg-white p-3 rounded-lg shadow-md cursor-pointer flex items-center justify-between"
+                                    onclick="toggleDropdown()">
+                                    <span id="selected-option" class="max-h-10 text-nowrap text-ellipsis overflow-hidden text-sm">اختر الفئة</span>
+                                    <svg id="dropdown-icon" class="absolute left-px w-fit h-5 bg-white text-gray-500 transition-transform" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                            
+                                <!-- Dropdown Options -->
+                                <div id="dropdown-options"
+                                    class="absolute left-0 sm:right-0 bg-white w-[calc(100%+150px)] mt-2 rounded-lg shadow-md overflow-y-auto max-h-60 hidden">
+                                    <!-- الإلكترونيات -->
+                                    <div class="p-3 font-semibold bg-gray-100">الإلكترونيات</div>
+                                    <div class="pl-5">
+                                        <div class="p-3 font-semibold bg-gray-50">ملحقات الكمبيوتر الشخصي/المحمول</div>
+                                        <div class="pl-5">
+                                            <div class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                                onclick="selectOption('ملحقات الطابعة - طابعات الكل في واحد، الخ 6%', '0.06')">
+                                                ملحقات الطابعة - طابعات الكل في واحد، الخ 6%
+                                            </div>
+                                            <div class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                                onclick="selectOption('ملحقات الطابعة - أخرى 14%', '0.14')">
+                                                ملحقات الطابعة - أخرى 14%
+                                            </div>
+                                            <div class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                                onclick="selectOption('أجهزة الكمبيوتر - بطاقة الرسوميات، الشاشة، UPS، ذاكرة الوصول العشوائي 6%', '0.06')">
+                                                أجهزة الكمبيوتر - بطاقة الرسوميات، الشاشة، UPS، ذاكرة الوصول العشوائي 6%
+                                            </div>
+                                            <div class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                                onclick="selectOption('أجهزة الكمبيوتر - أخرى 9%', '0.09')">
+                                                أجهزة الكمبيوتر - أخرى 9%
+                                            </div>
+                                            <div class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                                onclick="selectOption('أجهزة الإدخال والتخزين وملحقات الشبكات - 10% حتى 1000 جنيه مصري، و6% لما يزيد عنها', 'variable', event)"
+                                                data-price-barrier="1000" data-comm-for-above="0.06" data-comm-for-under="0.10">
+                                                أجهزة الإدخال والتخزين وملحقات الشبكات - 10% حتى 1000 جنيه مصري، و6% لما يزيد عنها
+                                            </div>
+                                            <div class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                                onclick="selectOption('ملحقات بديلة - الكل 14%', '0.14')">
+                                                ملحقات بديلة - الكل 14%
+                                            </div>
+                                            <div class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                                onclick="selectOption('الملحقات - جميع الملحقات الأخرى 14%', '0.14')">
+                                                الملحقات - جميع الملحقات الأخرى 14%
+                                            </div>
+                                            <div class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                                onclick="selectOption('البرمجيات - الكل 10%', '0.10')">
+                                                البرمجيات - الكل 10%
+                                            </div>
+                                            <div class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                                onclick="selectOption('الالكترونيات المكتبية - مؤشرات الليزر، مؤشرات العرض، أجهزة التحكم عن بعد للعرض 11%', '0.11')">
+                                                الالكترونيات المكتبية - مؤشرات الليزر، مؤشرات العرض، أجهزة التحكم عن بعد للعرض 11%
+                                            </div>
+                                        </div>
+                            
+                                    <!-- أجهزة الكمبيوتر المحمولة -->
+                                    <div class="p-3 font-semibold bg-gray-100">أجهزة الكمبيوتر المحمولة</div>
+                                    <div class="pl-5">
+                                        <div class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('أجهزة الكمبيوتر المحمولة والمكتبية - 5%', '0.05')">
+                                            أجهزة الكمبيوتر المحمولة والمكتبية - 5%
+                                        </div>
+                                    </div>
+                            
+                                    <!-- الهواتف المحمولة والأجهزة اللوحية -->
+                                    <div class="p-3 font-semibold bg-gray-100">الهواتف المحمولة والأجهزة اللوحية</div>
+                                    <div class="pl-5">
+                                        <div class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('الجوال - من نوع أبل 3.5%', '0.035')">
+                                            الجوال - من نوع أبل 3.5%
+                                        </div>
+                                        <div class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('الجوال - من البراندات الأخرى 4.5%', '0.045')">
+                                            الجوال - من البراندات الأخرى 4.5%
+                                        </div>
+                                        <div class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('ملحقات الجوال - 15% حتى 1000 جنيه مصري، و8% لما يزيد عنها', 'variable', event)"
+                                            data-price-barrier="1000" data-comm-for-above="0.08" data-comm-for-under="0.15">
+                                            ملحقات الجوال - 15% حتى 1000 جنيه مصري، و8% لما يزيد عنها
+                                        </div>
+                                    </div>
+                            
+                                    <!-- سماعات الرأس -->
+                                    <div class="p-3 font-semibold bg-gray-100">سماعات الرأس</div>
+                                    <div class="pl-5">
+                                        <div class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('سماعات الرأس - سماعات الرأس ومكبرات الصوت المحمولة وسماعات الهاتف وأجهزة الإرساء من نوع (Apple و Samsung و Huawei و Anker و Xiaomi و Sony و JBL و OnePlus و soundcore و Bose)', '0.08')">
+                                            سماعات الرأس - سماعات الرأس ومكبرات الصوت المحمولة وسماعات الهاتف وأجهزة الإرساء من نوع (Apple و Samsung
+                                            و Huawei و Anker و Xiaomi و Sony و JBL و OnePlus و soundcore و Bose) 8%
+                                        </div>
+                                        <div class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('سماعات الرأس - 8-13% حتى 800 جنيه مصري، و9% لما يزيد عنها', 'variable', event)"
+                                            data-price-barrier="800" data-comm-for-above="0.09" data-comm-for-under="0.13">
+                                            سماعات الرأس - من البراندات الأخرى 13% حتى 800 جنيه مصري، و9% لما يزيد عنها
+                                        </div>
+                                    </div>
+                            
+                                    <!-- الأجهزة القابلة للارتداء والإكسسوارات -->
+                                    <div class="p-3 font-semibold bg-gray-50">الأجهزة القابلة للارتداء والإكسسوارات</div>
+                                    <div class="pl-5">
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('الساعات الذكية/أجهزة تتبع اللياقة البدنية - من نوع أبل 5%', '0.05')"
+                                        >
+                                            الساعات الذكية/أجهزة تتبع اللياقة البدنية - من نوع أبل 5%
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('الساعات الذكية/أجهزة تتبع اللياقة البدنية - من البراندات الأخرى 7%', '0.07')"
+                                        >
+                                            الساعات الذكية/أجهزة تتبع اللياقة البدنية - من البراندات الأخرى 7%
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('ملحقات أخرى - 10%', '0.10')"
+                                        >
+                                            ملحقات أخرى - 10%
+                                        </div>
+                                    </div>
+
+                                    <!-- الكاميرا -->
+                                    <div class="p-3 font-semibold bg-gray-50">الكاميرا</div>
+                                    <div class="pl-5">
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('الكل - 6%', '0.06')"
+                                        >
+                                            الكل - 6%
+                                        </div>
+                                    </div>
+
+                                    <!-- الصوت والفيديو -->
+                                    <div class="p-3 font-semibold bg-gray-50">الصوت والفيديو</div>
+                                    <div class="pl-5">
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('التلفاز - 3.50%', '0.035')"
+                                        >
+                                            التلفاز - 3.50%
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('إكسسوارات التلفاز - 10%', '0.10')"
+                                        >
+                                            إكسسوارات التلفاز - 10%
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('أخرى - 10%', '0.10')"
+                                        >
+                                            الصوت والفيديو - أخرى 10%
+                                        </div>
+                                    </div>
+
+                                    <!-- الأجهزة المنزلية -->
+                                    <div class="p-3 font-semibold bg-gray-50">الأجهزة المنزلية</div>
+                                    <div class="pl-5">
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('الأجهزة الكبيرة - 3.50%', '0.035')"
+                                        >
+                                            الأجهزة المنزلية الكبيرة - 3.50%
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('الأجهزة الصغيرة - 6%', '0.06')"
+                                        >
+                                            الأجهزة المنزلية الصغيرة - 6%
+                                        </div>
+                                    </div>
+
+                                    <!-- ألعاب الفيديو -->
+                                    <div class="p-3 font-semibold bg-gray-50">ألعاب الفيديو</div>
+                                    <div class="pl-5">
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('لوحات التحكم - 3%', '0.03')"
+                                        >
+                                            لوحات التحكم - 3%
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('بطاقات الهدايا - 10%', '0.10')"
+                                        >
+                                            بطاقات الهدايا - 10%
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('البرامج والملحقات - 10%', '0.10')"
+                                        >
+                                            البرامج والملحقات - 10%
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- الأزياء -->
+                                <div class="p-3 font-semibold bg-gray-100">الأزياء</div>
+                                <div class="pl-5">
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('الملابس - 15%', '0.15')"
+                                    >
+                                        الملابس - 15%
+                                    </div>
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('الأحذية - 15%', '0.15')"
+                                    >
+                                        الأحذية - 15%
+                                    </div>
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('الحقائب والأمتعة - جميع الانواع 15%', '0.15')"
+                                    >
+                                        الحقائب والأمتعة - جميع الانواع 15%
+                                    </div>
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('الساعات - 14%', '0.14')"
+                                    >
+                                        الساعات - 14%
+                                    </div>
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('النظارات - 14%', '0.14')"
+                                    >
+                                        النظارات - 14%
+                                    </div>
+                                    <div class="p-3 font-semibold bg-gray-50">المجوهرات</div>
+                                    <div class="pl-5">
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('سبائك وعملات ذهبية - 4%', '0.04')"
+                                        >
+                                            سبائك وعملات ذهبية - 4%
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('المجوهرات الفاخرة - 10% حتى 5000 جنيه مصري، و5% لما يزيد عنها', 'variable', event)"
+                                            data-price-barrier="5000"
+                                            data-comm-for-above="0.05"
+                                            data-comm-for-under="0.10"
+                                        >
+                                            المجوهرات الفاخرة - 10% حتى 5000 جنيه مصري، و5% لما يزيد عنها
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('جميع أنواع المجوهرات الأخرى - 18%', '0.18')"
+                                        >
+                                            جميع أنواع المجوهرات الأخرى - 18%
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- المطبخ والطعام -->
+                                <div class="p-3 font-semibold bg-gray-100">المطبخ والطعام</div>
+                                <div class="pl-5">
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('المطبخ وغرفة الطعام - 12%', '0.12')"
+                                    >
+                                        المطبخ وغرفة الطعام - 12%
+                                    </div>
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('الفراش والحمام - 13%', '0.13')"
+                                    >
+                                        الفراش والحمام - 13%
+                                    </div>
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('ديكور المنزل - 13%', '0.13')"
+                                    >
+                                        ديكور المنزل - 13%
+                                    </div>
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('الأثاث - 12%', '0.12')"
+                                    >
+                                        الأثاث - 12%
+                                    </div>
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('أعمال البستنة - 11%', '0.11')"
+                                    >
+                                        أعمال البستنة - 11%
+                                    </div>
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('تحسينات المنزل - 12%', '0.12')"
+                                    >
+                                        تحسينات المنزل - 12%
+                                    </div>
+                                </div>
+
+                                <!-- الصحة والجمال -->
+                                <div class="p-3 font-semibold bg-gray-100">الصحة والجمال</div>
+                                <div class="pl-5">
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('الصحة والتغذية - 11%', '0.11')"
+                                    >
+                                        الصحة والتغذية - 11%
+                                    </div>
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('مستحضرات التجميل الملونة - 15%', '0.15')"
+                                    >
+                                        مستحضرات التجميل الملونة - 15%
+                                    </div>
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('العطور - 13%', '0.13')"
+                                    >
+                                        العطور - 13%
+                                    </div>
+                                    <div class="p-3 font-semibold bg-gray-50">العناية بالشعر والشخصية</div>
+                                    <div class="pl-5">
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('العناية الشخصية الالكترونية - 12%', '0.12')"
+                                        >
+                                            العناية الشخصية الالكترونية - 12%
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('العناية بالشعر والشخصية - 13.50%', '0.135')"
+                                        >
+                                            العناية بالشعر والشخصية - 13.50%
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- السيارات -->
+                                <div class="p-3 font-semibold bg-gray-100">السيارات</div>
+                                <div class="pl-5">
+                                    <div class="p-3 font-semibold bg-gray-50">العناية بالسيارة والإكسسوارات</div>
+                                    <div class="pl-5">
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('الصوت والفيديو - 11%', '0.11')"
+                                        >
+                                            ملحقات الصوت والفيديو بالسيارة - 11%
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('الإطارات - 9%', '0.09')"
+                                        >
+                                            إطارات السيارة - 9%
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('أخرى - 11%', '0.11')"
+                                        >
+                                            العناية بالسيارة والاكسسوارات - أخرى 11%
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- ألعاب، الأطفال والرضع -->
+                                <div class="p-3 font-semibold bg-gray-100">ألعاب، الأطفال والرضع</div>
+                                <div class="pl-5">
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('ألعاب - 13%', '0.13')"
+                                    >
+                                        ألعاب - 13%
+                                    </div>
+                                    <div class="p-3 font-semibold bg-gray-50">منتجات الأطفال</div>
+                                    <div class="pl-5">
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('الحفاظات - 7%', '0.07')"
+                                        >
+                                            الحفاظات - 7%
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('أخرى - 8%', '0.08')"
+                                        >
+                                            أخرى - 8%
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- الكتب والوسائط -->
+                                <div class="p-3 font-semibold bg-gray-100">الكتب والوسائط</div>
+                                <div class="pl-5">
+                                    <div class="pl-5">
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('الكتب - 7%', '0.07')"
+                                        >
+                                            الكتب - 7%
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('الموسيقى - 10%', '0.10')"
+                                        >
+                                            الموسيقى - 10%
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('الفيديو - 10%', '0.10')"
+                                        >
+                                            الفيديو - 10%
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- البقالة -->
+                                <div class="p-3 font-semibold bg-gray-100">البقالة</div>
+                                <div class="pl-5">
+                                    <div class="p-3 font-semibold bg-gray-50">الأطعمة والمشروبات</div>
+                                    <div class="pl-5">
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('الأطعمة والمشروبات - 15% حتى 250 جنيه مصري، و9% لما يزيد عنها', 'variable', event)"
+                                            data-price-barrier="250"
+                                            data-comm-for-above="0.09"
+                                            data-comm-for-under="0.15"
+                                        >
+                                            الأطعمة والمشروبات - 15% حتى 250 جنيه مصري، و9% لما يزيد عنها
+                                        </div>
+                                    </div>
+                                    <div class="p-3 font-semibold bg-gray-50">التنظيف والنظافة</div>
+                                    <div class="pl-5">
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('التنظيف والنظافة - 15% حتى 250 جنيه مصري، و9% لما يزيد عنها', 'variable', event)"
+                                            data-price-barrier="250"
+                                            data-comm-for-above="0.09"
+                                            data-comm-for-under="0.15"
+                                        >
+                                            التنظيف والنظافة - 15% حتى 250 جنيه مصري، و9% لما يزيد عنها
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('طعام الحيوانات الأليفة وإكسسواراتها - 15%', '0.15')"
+                                    >
+                                        طعام الحيوانات الأليفة وإكسسواراتها - 15%
+                                    </div>
+                                </div>
+
+                                <!-- الرياضة والأنشطة الخارجية -->
+                                <div class="p-3 font-semibold bg-gray-100">الرياضة والأنشطة الخارجية</div>
+                                <div class="pl-5">
+                                    <div class="pl-5">
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('جميع الدراجات - 11%', '0.11')"
+                                        >
+                                            جميع الدراجات - 11%
+                                        </div>
+                                        <div
+                                            class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                            onclick="selectOption('اخرى - 12%', '0.12')"
+                                        >
+                                            الرياضة والأنشطة الخارجية - أخرى 12%
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- فئات اخرى -->
+                                <div class="p-3 font-semibold bg-gray-100">فئات اخرى</div>
+                                <div class="pl-5">
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('القرطاسية ولوازم المكتب - 11%', '0.11')"
+                                    >
+                                        القرطاسية ولوازم المكتب - 11%
+                                    </div>
+                                    <div
+                                        class="p-3 hover:bg-gray-100 cursor-pointer product-ctg"
+                                        onclick="selectOption('فئات اخرى - 12%', '0.12')"
+                                    >
+                                        باقي الفئات الأخرى - 12%
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Middle Column -->
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="main-cell">الوزن (بالكيلو)</td>
+                        <td class="input-cell"><input type="number" placeholder="0.250" min="0" id="weight"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 8 -->
+                    <tr>
+                        <td class="main-cell">الطول</td>
+                        <td class="input-cell"><input type="number" min="0" placeholder="0" id="length"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 9 -->
+                    <tr>
+                        <td class="main-cell">العرض</td>
+                        <td class="input-cell"><input type="number" min="0" placeholder="0" id="width"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 10 -->
+                    <tr>
+                        <td class="main-cell">الإرتفاع</td>
+                        <td class="input-cell"><input type="number" min="0" placeholder="0" id="height"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 11 -->
+                    <tr>
+                        <td class="main-cell">نوع الطرد</td>
+                        <td class="input-cell"><input type="text" disabled value="قياسي" id="packageType"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 12 -->
+                    <tr>
+                        <td class="main-cell">Pick Up؟ <span class="text-yellow-400">+2ج</span></td>
+                        <td class="input-cell font-medium">
+                            <label for="yes" class="me-4">
+                                أه
+                                <input type="radio" id="yes" name="pickup" value="2" checked>
+                            </label>
+                            <label for="no">
+                                لأ
+                                <input type="radio" id="no" name="pickup" value="0">
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Left Column -->
+            <table>
+                <tbody>
+                    <!-- Row 13 -->
+                    <tr>
+                        <td class="main-cell">رسوم العمولة</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="commissionFee"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 14 -->
+                    <tr>
+                        <td class="main-cell">ضريبة 14% على رسوم العمولة</td>
+                        <td class="input-cell">
+                            <input type="text" disabled value="0" id="commissionTax"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 15 -->
+                    <tr>
+                        <td class="main-cell">رسوم الشحن</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="shippingFee"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 16 -->
+                    <tr>
+                        <td class="main-cell">ضريبة 14% على رسوم الشحن</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="shippingTax"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 17 -->
+                    <tr>
+                        <td class="main-cell">صافي الإيراد</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="netIncome"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 18 -->
+                    <tr>
+                        <td class="main-cell">صافي الربح</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="netProfit"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 19 -->
+                    <tr>
+                        <td class="main-cell">معدل الربح</td>
+                        <td class="input-cell"><input type="text" disabled value="0%" id="profitMargin"
+                                class="main-input">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End Noon FBP -->
+    </div>
+    <!-- End Main Content -->
+    <!-- Start Settings & Info Box -->
+    <div class="content-box mt-10 p-5 w-full">
+        <!-- Start Settings -->
+        <button
+            type="button"
+            class="font-medium bg-blue-100 duration-300 hover:bg-blue-500 hover:text-white px-2 py-1 rounded-lg"
+            id="savePreferencesBtn"
+        >
+            اضغط لحفظ اختياراتك كـ (فئة المنتج، الخ)
+        </button>
+        <hr class="my-3">
+        <div>
+            <h3 class="font-medium">روابط مفيدة:</h3>
+            <ul class="list-disc ps-8">
+                <li>
+                    <a
+                        class="underline duration-300 hover:no-underline hover:text-blue-600"
+                        target="_blank"
+                        href="https://support.noon.partners/portal/ar/kb/articles/%D8%B1%D8%B3%D9%88%D9%85-%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%8A%D9%81%D8%A7%D8%A1-%D8%B9%D9%86-%D8%B7%D8%B1%D9%8A%D9%82-%D8%A7%D9%84%D8%B4%D8%B1%D9%8A%D9%83-fbp-%D9%81%D9%8A-%D9%85%D8%B5%D8%B1"
+                    >
+                        هيكل رسوم البيع على نون FBP والعمولات
+                    </a>
+                </li>
+            </ul>
+            <p class="mt-3">
+                تم إنشاء هذه الأداة بمساعدة 
+                <a
+                    class="underline duration-300 hover:no-underline hover:text-blue-600 font-medium"
+                    target="_blank"
+                    href="https://www.facebook.com/people/Bto3-E3lanat/61555494184756"
+                >
+                    Bto3 E3lanat
+                </a>
+            </p>
+        </div>
+        <!-- End Settings -->
+    </div>
+    <!-- End Settings & Info Box -->
+    <!-- Start Footer -->
+    <footer class="text-center mt-7 mb-1">أُنشِئَ بال❤️ بواسطة
+        <a href="https://osamaeid1.github.io/Portfolio/" target="_blank" class="text-red-500 underline font-bold ms-1">أسامة</a>
+    </footer>
+    <!-- End Footer -->
+    
+    <script src="noon.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP34R4SESN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-GP34R4SESN');
+    </script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="حاسبة الأرباح | أمازون FBA">
+    <meta property="og:description"
+        content="احسب أرباحك وتكاليفك بدقة قبل تسعير منتجاتك على أمازون مصر. تجنب الخسائر واتخذ قرارات تسعير ذكية!">
+    <meta property="og:image"
+        content="https://firebasestorage.googleapis.com/v0/b/toys-n-more-18.appspot.com/o/website-images%2Fe-commerce-calc-revenue-preview.webp?alt=media&token=e9ee0a95-7a49-4899-a634-260a33edde9d">
+    <meta property="og:url" content="https://osamaeid1.github.io/e-commerce-calc-revenue/">
+    <meta property="og:type" content="website">
+    <title>حاسبة الأرباح | أمازون FBA</title>
+    <link rel="icon" href="./assets/favicon.ico">
+    <link rel="stylesheet" href="./css/output.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="content-box">
+    <!-- Start Header -->
+    <div class="flex">
+            <a href=""
+                class="
+                    block flex-1 p-2 mx-1 rounded-lg text-center text-2xl font-extrabold
+                    bg-slate-300 shadow-sm
+                "
+            >
+                أمازون
+            </a>
+            <a href="./jumia/index.html"
+                class="
+                    block flex-1 p-2 me-1 rounded-lg text-center text-2xl font-extrabold
+                    bg-slate-100 duration-300 hover:bg-slate-300
+                "
+            >
+                جوميا
+            </a>
+            <a href="./noon/index.html"
+                class="
+                    block flex-1 p-2 me-1 rounded-lg text-center text-2xl font-extrabold
+                    bg-slate-100 duration-300 hover:bg-slate-300
+                "
+            >
+                نون
+            </a>
+    </div>
+    <div class="flex m-3">
+        <a href="./index.html"
+            class="
+                block w-1/2 p-2 me-1 rounded-lg text-center text-xl font-extrabold
+                bg-slate-100 duration-300 hover:bg-slate-300
+            "
+        >
+            حساب الأرباح على أمازون FBM
+        </a>
+        <a href=""
+            class="
+                block flex-1 p-2 rounded-lg text-center text-xl font-extrabold
+                bg-slate-300 shadow-md
+            "
+            >
+            حساب الأرباح على أمازون FBA
+        </a>
+    </div>
+    <!-- End Header -->
+        <!-- Start Amazon FBM -->
+        <h2 class="text-2xl font-bold text-center mt-5"></h2>
+        <div class="grid grid-cols-1 p-6 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <!-- Right Column -->
+            <table>
+                <tbody>
+                    <!-- Row 1 -->
+                    <tr>
+                        <td class="main-cell">تكلفة القطعة</td>
+                        <td class="input-cell">
+                            <input id="costPerUnit" class="main-input" type="number" min="0" placeholder="0"
+                                autofocus />
+                        </td>
+                    </tr>
+                    <!-- Row 2 -->
+                    <tr>
+                        <td class="main-cell">سعر القطعة</td>
+                        <td class="input-cell"><input type="number" min="0" placeholder="0" id="pricePerUnit"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 3 -->
+                    <tr>
+                        <td class="main-cell">عدد القطع</td>
+                        <td class="input-cell"><input type="number" min="1" value="1" id="quantity" class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 4 -->
+                    <tr>
+                        <td class="main-cell">إجمالي سعر القطع</td>
+                        <td class="input-cell">
+                            <input type="number" disabled value="0" id="totalPrice" class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 5 -->
+                    <tr>
+                        <td class="main-cell">فئة المنتج</td>
+                        <td class="input-cell">
+                            <select id="productCategory"
+                                class="w-full p-2 cursor-pointer border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+
+                                <!-- الصحة والعناية الشخصية -->
+                                <optgroup label="الصحة والعناية الشخصية">
+                                    <option value="0.11">الصحة والعناية الشخصية 11%</option>
+                                    <option value="0.15" data-offer-type="1" data-offer-discount="0.11">منتجات التجميل 15% - تُخفض ل11% في العرض 1
+                                    </option>
+                                    <option value="0.11" data-offer-type="2" data-offer-discount="0.10">أجهزة العناية الشخصية 11% - تُخفض ل10% في
+                                        العرض 2</option>
+                                    <option value="0.13" data-offer-type="1" data-offer-discount="0.11">العطور 13% - تُخفض ل11% في العرض 1</option>
+                                </optgroup>
+
+                                <!-- الإلكترونيات -->
+                                <optgroup label="الإلكترونيات">
+                                    <option value="0.04" data-offer-type="1" data-offer-discount="0.035">التلفزيونات 4% - تُخفض ل3.5% في العرض 1
+                                    </option>
+                                    <option value="0.04" data-offer-type="1" data-offer-discount="0.035">المنتجات الترفيهية المنزلية 4% - تُخفض
+                                        ل3.5% في العرض 1</option>
+                                    <option value="0.04" data-offer-type="2" data-offer-discount="0.03">الهواتف المحمولة 4% - تُخفض ل3% في العرض 2
+                                    </option>
+                                    <option value="0.06" data-offer-type="2" data-offer-discount="0.04">أجهزة الكمبيوتر الشخصية 6%</option>
+                                    <option value="0.08">الإلكترونيات الاستهلاكية 8%</option>
+                                    <option value="0.07" data-offer-type="1" data-offer-discount="0.06">الأجهزة المنزلية الصغيرة 7% - تُخفض ل6% في
+                                        العرض 1</option>
+                                    <option value="0.04" data-offer-type="1" data-offer-discount="0.035">الأجهزة المنزلية الرئيسية 4% - تُخفض ل3.5%
+                                        في العرض 1</option>
+                                    <option value="0.10">ألعاب الفيديو 10%</option>
+                                    <option value="0.03">أجهزة ألعاب فيديو 3%</option>
+                                    <option value="0.10">DVD / الفيديو والدي في دي 10%</option>
+                                </optgroup>
+
+                                <!-- المنزل والحديقة -->
+                                <optgroup label="المنزل والحديقة">
+                                    <option value="0.13">أثاث 13%</option>
+                                    <option value="0.13">منتجات المنزل 13%</option>
+                                    <option value="0.11">المطبخ 11%</option>
+                                    <option value="0.13">منتجات الأنشطة الخارجية والحدائق 13%</option>
+                                    <option value="0.14" data-offer-type="1" data-offer-discount="0.14">منتجات الحيوانات الأليفة 14% - تُخفض ل11% في
+                                        العرض 1</option>
+                                </optgroup>
+
+                                <!-- الألعاب ومنتجات الأطفال -->
+                                <optgroup label="الألعاب ومنتجات الأطفال">
+                                    <option value="0.13">الألعاب 13%</option>
+                                    <option value="0.08">منتجات الأطفال 8%</option>
+                                </optgroup>
+
+                                <!-- الملابس والإكسسوارات -->
+                                <optgroup label="الملابس والإكسسوارات">
+                                    <option value="0.15" data-offer-type="3" data-offer-discount="0.10">الملابس والأحذية 15% - تُخفض ل10% في العرض 3</option>
+                                    <option value="0.15" data-offer-type="3" data-offer-discount="0.10">الأمتعة 15% - تُخفض ل10% في العرض 3</option>
+                                    <option value="0.12" data-offer-type="2" data-offer-discount="0.11">الساعات 12% - تُخفض ل11% في العرض 2</option>
+                                    <option value="variable" data-price-barrier="5000" data-comm-for-above="0.05" data-comm-for-under="0.19">
+                                        المجوهرات - 19% حتى 5000 جنيه مصري، و5% لما يزيد عن 5000 جنيه
+                                    </option>
+                                </optgroup>
+
+                                <!-- الكتب والبرمجيات -->
+                                <optgroup label="الكتب والبرمجيات">
+                                    <option value="0.07">الكتب 7%</option>
+                                    <option value="0.10">برمجيات 10%</option>
+                                </optgroup>
+
+                                <!-- الرياضة والأدوات -->
+                                <optgroup label="الرياضة والأدوات">
+                                    <option value="0.11">الرياضة 11%</option>
+                                    <option value="0.11">المنتجات المكتبية 11%</option>
+                                    <option value="0.11">لوازم الأعمال الصناعية والعلمية 11%</option>
+                                    <option value="0.11">أدوات 11%</option>
+                                    <option value="0.11">السيارات 11%</option>
+                                    <option value="0.06">الكاميرا 6%</option>
+                                </optgroup>
+                                
+                                <!-- الفئات المتغيرة -->
+                                <optgroup label="الفئات المتغيرة">
+                                    <option value="variable" data-price-barrier="1000" data-comm-for-above="0.08" data-comm-for-under="0.15">اكسسوارات
+                                        الإلكترونيات - 15٪ حتى 1000 جنيه مصري، و 8% لما يزيد عن 1000 جنيه</option>
+                                    <option value="variable" data-price-barrier="1000" data-comm-for-above="0.08" data-comm-for-under="0.15">أجهزة الصوت
+                                        المحمولة - 15% حتى 1000 جنيه مصري، و8% لما يزيد عن 1000 جنيه</option>
+                                    <option value="variable" data-price-barrier="250" data-comm-for-above="0.09" data-comm-for-under="0.03" data-minimum-comm-fee="0">البقالة - 3% حتى 250
+                                        جنيه مصري، و9% لما يزيد عن 250 جنيه</option>
+                                </optgroup>
+
+                                <!-- الفئات الأخرى -->
+                                <optgroup label="الفئات الأخرى">
+                                    <option value="0.10">بطاقات الهدايا 10%</option>
+                                    <option value="0.10">الطوابع 10%</option>
+                                    <option value="0.10">جميع الفئات الأخرى 10%</option>
+                                </optgroup>
+                            </select>
+                        </td>
+                    </tr>
+                    <!-- Row 6 -->
+                    <tr>
+                        <td class="main-cell">العمولة %</td>
+                        <td class="input-cell">
+                            <input type="number" min="0" value="0" id="updatedCommission" class="main-input bg-slate-50">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Middle Column -->
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="main-cell">الوزن (بالكيلو)</td>
+                        <td class="input-cell"><input type="number" placeholder="0.250" min="0" id="weight"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 8 -->
+                    <tr>
+                        <td class="main-cell">الطول</td>
+                        <td class="input-cell"><input type="number" min="0" placeholder="0" id="length"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 9 -->
+                    <tr>
+                        <td class="main-cell">العرض</td>
+                        <td class="input-cell"><input type="number" min="0" placeholder="0" id="width"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 10 -->
+                    <tr>
+                        <td class="main-cell">الإرتفاع</td>
+                        <td class="input-cell"><input type="number" min="0" placeholder="0" id="height"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 11 -->
+                    <tr>
+                        <td class="main-cell">نوع الطرد</td>
+                        <td class="input-cell"><input type="text" disabled value="قياسي" id="packageType"
+                                class="main-input">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Left Column -->
+            <table>
+                <tbody>
+                    <!-- Row 13 -->
+                    <tr>
+                        <td class="main-cell">رسوم العمولة</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="commissionFee"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 14 -->
+                    <tr>
+                        <td class="main-cell">ضريبة 14% على رسوم العمولة</td>
+                        <td class="input-cell">
+                            <input type="text" disabled value="0" id="commissionTax" class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 15 -->
+                    <tr>
+                        <td class="main-cell">رسوم الشحن من قبل أمازون</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="shippingFee"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 16 -->
+                    <tr>
+                        <td class="main-cell">ضريبة 14% على رسوم الشحن</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="shippingTax"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 17 -->
+                    <tr>
+                        <td class="main-cell">صافي الإيراد</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="netIncome" class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 18 -->
+                    <tr>
+                        <td class="main-cell">صافي الربح</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="netProfit" class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 19 -->
+                    <tr>
+                        <td class="main-cell">معدل الربح</td>
+                        <td class="input-cell"><input type="text" disabled value="0%" id="profitMargin"
+                                class="main-input">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End Amazon FBM -->
+    </div>
+    <!-- End Main Content -->
+    <!-- Start Settings & Info Box -->
+    <div class="content-box mt-10 p-5 w-full">
+        <!-- Start Settings -->
+        <button type="button"
+            class="font-medium bg-blue-100 duration-300 hover:bg-blue-500 hover:text-white px-2 py-1 rounded-lg"
+            id="savePreferencesBtn">
+            اضغط لحفظ اختياراتك ك (فئة المنتج)
+        </button>
+        <hr class="my-3">
+        <div class="">
+            <h3 class="font-medium">روابط مفيدة:</h3>
+            <ul class="list-disc ps-8">
+                <li>
+                    <a class="underline duration-300 hover:no-underline hover:text-blue-600" target="_blank"
+                        href="https://sell.amazon.eg/pricing?ref_=sdeg_soa_priov_n">
+                        هيكل رسوم البيع على أمازون والعمولات
+                    </a>
+                </li>
+                <li>
+                    <a class="underline duration-300 hover:no-underline hover:text-blue-600" target="_blank"
+                        href="https://sellercentral-europe.amazon.com/help/hub/reference/200612770">
+                        رسوم التخزين
+                    </a>
+                </li>
+                <li>
+                    <a class="underline duration-300 hover:no-underline hover:text-blue-600" target="_blank"
+                        href="https://sellercentral-europe.amazon.com/help/hub/reference/201112670">
+                        رسوم الشحن والتغليف (ملحوظة: يتم احتساب تكلفة الشحن بناءً على عدد القطع لكل طلب)
+                    </a>
+                </li>
+                <li>
+                    <a class="underline duration-300 hover:no-underline hover:text-blue-600" target="_blank"
+                        href="https://drive.google.com/file/d/1gllCcXQOl8JxFAjvmyYYgy9U8dbI1mdO/view?usp=drive_link">
+                        دليل البائع الجديد
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- End Settings -->
+    </div>
+    <!-- End Settings & Info Box -->
+    <!-- Start Footer -->
+    <footer class="text-center mt-7 mb-1">أُنشِئَ بال❤️ بواسطة
+        <a href="https://osamaeid1.github.io/Portfolio/" target="_blank"
+            class="text-red-500 underline font-bold ms-1">أسامة</a>
+    </footer>
+    <!-- End Footer -->
+
+    <script type="module" src="amazon.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP34R4SESN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-GP34R4SESN');
+    </script>
+</body>
+
+</html>

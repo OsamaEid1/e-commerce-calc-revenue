@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    padding: 2rem/* 32px */;
+    padding-bottom: 0;
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity))/* #f3f4f6 */;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+input {
+    text-align: center;
+}
+
+
+.content-box {
+    @apply max-w-4xl mx-auto bg-white pt-0 rounded-lg shadow-lg;
+}
+
+.main-input {
+    @apply w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400;
+}
+
+.main-input:disabled {
+    @apply bg-slate-200 font-semibold;
+}
+
+.main-cell {
+    padding: 0.75rem /* 12px */;
+    font-weight: 600;
+}
+
+.input-cell {
+    padding: 0.5rem /* 12px */;
+}

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="حاسبة الأرباح | جوميا">
+    <meta property="og:description"
+        content="احسب أرباحك وتكاليفك بدقة قبل تسعير منتجاتك على جوميا مصر. تجنب الخسائر واتخذ قرارات تسعير ذكية!">
+    <meta property="og:image"
+        content="https://firebasestorage.googleapis.com/v0/b/toys-n-more-18.appspot.com/o/website-images%2Fe-commerce-calc-revenue-preview.webp?alt=media&token=e9ee0a95-7a49-4899-a634-260a33edde9d">
+    <meta property="og:url" content="https://osamaeid1.github.io/e-commerce-calc-revenue/jumia/index.html">
+    <meta property="og:type" content="website">
+    <title>حاسبة الأرباح | جوميا</title>
+    <link rel="icon" href="../assets/favicon.ico" />
+    <link rel="stylesheet" href="../css/output.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!-- Start Main Content -->
+    <div class="content-box">
+        <!-- Start Header -->
+        <div class="flex">
+            <a href="../index.html"
+                class="
+                    block flex-1 p-2 mx-1 rounded-lg text-center text-2xl font-extrabold
+                    bg-slate-100 duration-300 hover:bg-slate-300
+                "
+            >
+                أمازون
+            </a>
+            <a href=""
+                class="
+                    block flex-1 p-2 me-1 rounded-lg text-center text-2xl font-extrabold
+                    bg-slate-300 shadow-sm
+                "
+            >
+                جوميا
+            </a>
+            <a href="../noon/index.html"
+                class="
+                    block flex-1 p-2 me-1 rounded-lg text-center text-2xl font-extrabold
+                    bg-slate-100 duration-300 hover:bg-slate-300
+                "
+            >
+                نون
+            </a>
+        </div>
+        <!-- End Header -->
+        <!-- Start Jumia JBM -->
+        <h2 class="text-2xl font-bold text-center mt-5">حساب الأرباح على جوميا JBM</h2>
+        <div class="grid grid-cols-1 p-6 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <!-- Right Column -->
+            <table>
+                <tbody>
+                    <!-- Row 1 -->
+                    <tr>
+                        <td class="main-cell">تكلفة القطعة</td>
+                        <td class="input-cell">
+                            <input
+                                id="costPerUnit"
+                                class="main-input"
+                                type="number" 
+                                min="0" 
+                                placeholder="0" 
+                                autofocus 
+                            />
+                        </td>
+                    </tr>
+                    <!-- Row 2 -->
+                    <tr>
+                        <td class="main-cell">سعر القطعة</td>
+                        <td class="input-cell"><input type="number" min="0" placeholder="0" id="pricePerUnit"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 3 -->
+                    <tr>
+                        <td class="main-cell">عدد القطع</td>
+                        <td class="input-cell"><input type="number" min="1" value="1" id="quantity"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 4 -->
+                    <tr>
+                        <td class="main-cell">إجمالي سعر القطع</td>
+                        <td class="input-cell">
+                            <input type="number" disabled value="0" id="totalPrice"
+                                class="main-input">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Middle Column -->
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="main-cell">فئة المنتج</td>
+                        <td class="input-cell">
+                            <select id="productCategory"
+                                class="w-full p-2 cursor-pointer border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+
+                                <!-- الأزياء -->
+                                <optgroup label="الأزياء">
+                                    <option value="0.114">جميع الأزياء 11.4%</option>
+                                    <option value="0.057">المجوهرات/الذهب 5.7%</option>
+                                </optgroup>
+
+                                <!-- الصحة والجمال -->
+                                <optgroup label="الصحة والجمال">
+                                    <option value="0.114">جميع المنتجات 11.4%</option>
+                                    <option value="0.091">أجهزة الصحة والجمال 9.1%</option>
+                                </optgroup>
+
+                                <!-- الساعات والنظارات -->
+                                <optgroup label="الساعات والنظارات">
+                                    <option value="0.103">الساعات 10.3%</option>
+                                    <option value="0.114">نظارات شمسية 11.4%</option>
+                                </optgroup>
+
+                                <!-- الموبايلات والتابلت -->
+                                <optgroup label="الموبايلات والتابلت">
+                                    <option value="0.034">الموبايلات 3.4%</option>
+                                    <option value="0.079">الساعات الذكية 7.9%</option>
+                                    <option value="0.046">التابلت 4.6%</option>
+                                    <option value="0.137">الاكسسوارات 13.7%</option>
+                                    <option value="0.114">هواتف منزلية 11.4%</option>
+                                </optgroup>
+
+                                <!-- أجهزة كمبيوتر -->
+                                <optgroup label="أجهزة كمبيوتر">
+                                    <option value="0.034">لاب توب 3.4%</option>
+                                    <option value="0.046">أجهزة كمبيوتر وشاشات 4.6%</option>
+                                    <option value="0.114">اكسسوارات 11.4%</option>
+                                    <option value="0.114">قطع غيار 11.4%</option>
+                                    <option value="0.091">هارد درايف ووحدات تخزين 9.1%</option>
+                                    <option value="0.114">منتجات الشبكات 11.4%</option>
+                                    <option value="0.114">البرمجيات 11.4%</option>
+                                    <option value="0.171">أجهزة عرض 17.1%</option>
+                                </optgroup>
+
+                                <!-- طابعات وماسحات ضوئية -->
+                                <optgroup label="طابعات وماسحات ضوئية">
+                                    <option value="0.057">جميع الطابعات وخراطيش الحبر 5.7%</option>
+                                </optgroup>
+
+                                <!-- الإلكترونيات -->
+                                <optgroup label="الإلكترونيات">
+                                    <option value="0.171">قارئ الكتب الإلكترونية 17.1%</option>
+                                    <option value="0.114">التكنولوجيا القابلة للارتداء 11.4%</option>
+                                </optgroup>
+
+                                <!-- المنزل ومستلزماته -->
+                                <optgroup label="المنزل ومستلزماته">
+                                    <option value="0.137">مستلزمات المنزل، المطبخ، الحمام 13.7%</option>
+                                    <option value="0.068">أجهزة منزلية صغيرة 6.8%</option>
+                                    <option value="0.034">أجهزة منزلية كبيرة 3.4%</option>
+                                    <option value="0.137">أثاث منزلي وديكور 13.7%</option>
+                                    <option value="0.137">مستلزمات الحدائق 13.7%</option>
+                                </optgroup>
+
+                                <!-- مستلزمات والعاب الأطفال -->
+                                <optgroup label="مستلزمات والعاب الأطفال">
+                                    <option value="0.091">حفاضات 9.1%</option>
+                                    <option value="0.091">المشايات ومستلزمات الأطفال 9.1%</option>
+                                    <option value="0.091" selected>ألعاب الأطفال 9.1%</option>
+                                </optgroup>
+
+                                <!-- الرياضة -->
+                                <optgroup label="الرياضة">
+                                    <option value="0.171">ملابس وأحذية رياضية 17.1%</option>
+                                    <option value="0.125">أدوات رياضية 12.5%</option>
+                                </optgroup>
+
+                                <!-- السيارات والأدوات -->
+                                <optgroup label="السيارات والأدوات">
+                                    <option value="0.114">الإطارات والكاوتش 11.4%</option>
+                                    <option value="0.125">صوتيات ومرئيات 12.5%</option>
+                                    <option value="0.114">الزيوت والسوائل 11.4%</option>
+                                    <option value="0.114">البطاريات 11.4%</option>
+                                    <option value="0.125">أخرى 12.5%</option>
+                                </optgroup>
+
+                                <!-- أدوات مكتبية وكتب -->
+                                <optgroup label="أدوات مكتبية وكتب">
+                                    <option value="0.137">أدوات مكتبية 13.7%</option>
+                                    <option value="0.114">كتب 11.4%</option>
+                                </optgroup>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="main-cell">نوع الطرد</td>
+                        <td class="input-cell">
+                            <select 
+                                id="packageType"
+                                class="w-full p-2 cursor-pointer border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                >
+                                <option value="15">منتجات صغيرة الحجم & الموضة والأزياء - 15ج</option>
+                                <option value="25">منتجات متوسطة الحجم - 25ج</option>
+                                <option value="60">منتجات كبيرة الحجم - 60ج</option>
+                                <option value="140">منتجات متناهية الكبر (مثل: الثلاجات والغسالات ولا تشمل فئة الأثاث المنزلي) - 140ج</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="main-cell">رسوم تجهيز الطلبات</td>
+                        <td class="input-cell">
+                            <input type="number" disabled value="8" min="0" id="shippingProcessingFee"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="main-cell">Pick Up؟ <span class="text-orange-400">15ج</span></td>
+                        <td class="input-cell font-medium">
+                            <label for="yes" class="me-4">
+                                أه
+                                <input type="radio" id="yes" name="pickup" value="15">
+                            </label>
+                            <label for="no">
+                                لأ
+                                <input type="radio" id="no" name="pickup" value="0" checked>
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Left Column -->
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="main-cell">رسوم العمولة</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="commissionFee"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="main-cell">صافي الإيراد</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="netIncome"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 18 -->
+                    <tr>
+                        <td class="main-cell">صافي الربح</td>
+                        <td class="input-cell"><input type="text" disabled value="0" id="netProfit"
+                                class="main-input">
+                        </td>
+                    </tr>
+                    <!-- Row 19 -->
+                    <tr>
+                        <td class="main-cell">معدل الربح</td>
+                        <td class="input-cell"><input type="text" disabled value="0%" id="profitMargin"
+                                class="main-input">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End Jumia JBM -->
+    </div>
+    <!-- End Main Content -->
+    <!-- Start Settings & Info Box -->
+    <div class="content-box mt-10 p-5 w-full">
+        <!-- Start Settings -->
+        <button
+            type="button"
+            class="font-medium bg-blue-100 duration-300 hover:bg-blue-500 hover:text-white px-2 py-1 rounded-lg"
+            id="savePreferencesBtn"
+        >
+            اضغط لحفظ اختياراتك كـ (فئة المنتج، الخ)
+        </button>
+        <hr class="my-3">
+        <div class="">
+            <h3 class="font-medium">روابط مفيدة:</h3>
+            <ul class="list-disc ps-8">
+                <li>
+                    <a
+                        class="underline duration-300 hover:no-underline hover:text-blue-600"
+                        target="_blank"
+                        href="https://drive.google.com/file/d/1qkVMkzBcuulgAc9hj8XWtVybvVuFFD_X/view?usp=sharing"
+                    >
+                        جدول العمولات المُحدّثة
+                    </a>
+                </li>
+                <li>
+                    <a
+                        class="underline duration-300 hover:no-underline hover:text-blue-600"
+                        target="_blank"
+                        href="https://sell.jumia.com/cost/"
+                    >
+                        هيكل رسوم البيع على جوميا والعمولات
+                    </a>
+                </li>
+                <li>
+                    <a
+                        class="underline duration-300 hover:no-underline hover:text-blue-600"
+                        target="_blank"
+                        href="https://www.jumia.com.eg/ar/packaging-materials/"
+                    >
+                        صفحة بيع مواد تغليف جوميا (لمتابعة تكلفة التغليف للأوردر)
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- End Settings -->
+    </div>
+    <!-- End Settings & Info Box -->
+    <!-- Start Footer -->
+    <footer class="text-center mt-7 mb-1">أُنشِئَ بال❤️ بواسطة
+        <a href="https://osamaeid1.github.io/Portfolio/" target="_blank" class="text-red-500 underline font-bold ms-1">أسامة</a>
+    </footer>
+    <!-- End Footer -->
+    
+    <script type="module" src="jumia.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP34R4SESN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-GP34R4SESN');
+    </script>
+</body>
+</html>
