@@ -245,17 +245,17 @@ document.addEventListener("DOMContentLoaded", function () {
         calcProfitsNumbers();
     };
     const calcEasyShipAsStandard = (weight) => {
-        const baseShippingFee = 42;
+        const baseShippingFee = 45.5;
         const weightIncrement = 2;
         const maxWeight = 12;
         const additionalFeePerKg = 2;
         let shippingFees = baseShippingFee;
 
         if (weight <= 0.25) shippingFees = baseShippingFee;
-        else if (weight <= 0.5) shippingFees = 47;
-        else if (weight <= 1) shippingFees = 49;
-        else if (weight <= 1.5) shippingFees = 51;
-        else if (weight <= weightIncrement) shippingFees = 53;
+        else if (weight <= 0.5) shippingFees = 51;
+        else if (weight <= 1) shippingFees = 53;
+        else if (weight <= 1.5) shippingFees = 57.5;
+        else if (weight <= weightIncrement) shippingFees = 59.5;
         else if (weight > weightIncrement) {
             // Calculate the number of additional kilograms over the base increment
             const additionalKg = Math.min(weight, maxWeight) - weightIncrement;
@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
         AmazonShippingTax.value = (shippingFees * 0.14).toFixed(2);
     };
     const calcEasyShipAsSuper = (weight) => {
-        const baseShippingFee = 49;
+        const baseShippingFee = 55.5;
         const weightIncrement = 1;
         const additionalFeePerKg = 2;
         let shippingFees = baseShippingFee;
@@ -310,7 +310,7 @@ document.addEventListener("DOMContentLoaded", function () {
         switch (sizeCategory) {
             case "المُغلف الصغير":
                 if (weightKg <= 0.1) {
-                    shippingFee = 15.5;
+                    shippingFee = 17.5;
                     break;
                 } else {
                     shippingFee = "غير متاح"; // Weight exceeds the limit
@@ -318,136 +318,136 @@ document.addEventListener("DOMContentLoaded", function () {
 
             case "المُغلف الأساسي":
                 if (weightKg <= 0.1) {
-                    shippingFee = 15.5;
+                    shippingFee = 17.5;
                     sizeCategory = "المُغلف الأساسي";
                     break;
                 } else if (weightKg <= 0.2) {
-                    shippingFee = 15.5;
+                    shippingFee = 17.5;
                     sizeCategory = "المُغلف الأساسي";
                     break;
                 } else if (weightKg <= 0.5) {
-                    shippingFee = 16;
+                    shippingFee = 18.5;
                     sizeCategory = "المُغلف الأساسي";
                     break;
                 }
 
             case "المُغلف الكبير":
                 if (weightKg <= 1) {
-                    shippingFee = 16.5;
+                    shippingFee = 19;
                     sizeCategory = "المُغلف الكبير";
                     break;
                 }
 
             case "الطرد الأساسي":
                 if (weightKg <= 0.25) {
-                    shippingFee = 15.5;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
-                } else if (weightKg <= 0.5) {
-                    shippingFee = 16;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
-                } else if (weightKg <= 1) {
-                    shippingFee = 16.5;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
-                } else if (weightKg <= 1.5) {
-                    shippingFee = 17;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
-                } else if (weightKg <= 2) {
                     shippingFee = 17.5;
                     sizeCategory = "الطرد الأساسي";
                     break;
-                } else if (weightKg <= 3) {
+                } else if (weightKg <= 0.5) {
                     shippingFee = 18.5;
                     sizeCategory = "الطرد الأساسي";
                     break;
-                } else if (weightKg <= 4) {
-                    shippingFee = 19.5;
+                } else if (weightKg <= 1) {
+                    shippingFee = 19;
                     sizeCategory = "الطرد الأساسي";
                     break;
-                } else if (weightKg <= 5) {
+                } else if (weightKg <= 1.5) {
+                    shippingFee = 20;
+                    sizeCategory = "الطرد الأساسي";
+                    break;
+                } else if (weightKg <= 2) {
                     shippingFee = 20.5;
                     sizeCategory = "الطرد الأساسي";
                     break;
-                } else if (weightKg <= 6) {
+                } else if (weightKg <= 3) {
                     shippingFee = 21.5;
                     sizeCategory = "الطرد الأساسي";
                     break;
-                } else if (weightKg <= 7) {
+                } else if (weightKg <= 4) {
                     shippingFee = 22.5;
                     sizeCategory = "الطرد الأساسي";
                     break;
-                } else if (weightKg <= 8) {
+                } else if (weightKg <= 5) {
                     shippingFee = 23.5;
                     sizeCategory = "الطرد الأساسي";
                     break;
-                } else if (weightKg <= 9) {
+                } else if (weightKg <= 6) {
                     shippingFee = 24.5;
                     sizeCategory = "الطرد الأساسي";
                     break;
-                } else if (weightKg <= 10) {
+                } else if (weightKg <= 7) {
                     shippingFee = 25.5;
                     sizeCategory = "الطرد الأساسي";
                     break;
-                } else if (weightKg <= 11) {
+                } else if (weightKg <= 8) {
                     shippingFee = 26.5;
                     sizeCategory = "الطرد الأساسي";
                     break;
-                } else if (weightKg <= 12) {
+                } else if (weightKg <= 9) {
                     shippingFee = 27.5;
+                    sizeCategory = "الطرد الأساسي";
+                    break;
+                } else if (weightKg <= 10) {
+                    shippingFee = 28.5;
+                    sizeCategory = "الطرد الأساسي";
+                    break;
+                } else if (weightKg <= 11) {
+                    shippingFee = 29.5;
+                    sizeCategory = "الطرد الأساسي";
+                    break;
+                } else if (weightKg <= 12) {
+                    shippingFee = 30.5;
                     sizeCategory = "الطرد الأساسي";
                     break;
                 }
 
             case "فائق الحجم":
                 if (weightKg <= 1) {
-                    shippingFee = 20;
+                    shippingFee = 23;
                     sizeCategory = "فائق الحجم";
                 } else if (weightKg <= 2) {
-                    shippingFee = 22;
+                    shippingFee = 25;
                     sizeCategory = "فائق الحجم";
                 } else if (weightKg <= 3) {
-                    shippingFee = 24;
+                    shippingFee = 27;
                     sizeCategory = "فائق الحجم";
                 } else if (weightKg <= 4) {
-                    shippingFee = 26;
+                    shippingFee = 29;
                     sizeCategory = "فائق الحجم";
                 } else if (weightKg <= 5) {
-                    shippingFee = 28;
+                    shippingFee = 31;
                     sizeCategory = "فائق الحجم";
                 } else if (weightKg <= 6) {
-                    shippingFee = 30;
+                    shippingFee = 33;
                     sizeCategory = "فائق الحجم";
                 } else if (weightKg <= 7) {
-                    shippingFee = 32;
+                    shippingFee = 35;
                     sizeCategory = "فائق الحجم";
                 } else if (weightKg <= 8) {
-                    shippingFee = 34;
+                    shippingFee = 37;
                     sizeCategory = "فائق الحجم";
                 } else if (weightKg <= 9) {
-                    shippingFee = 36;
+                    shippingFee = 39;
                     sizeCategory = "فائق الحجم";
                 } else if (weightKg <= 10) {
-                    shippingFee = 38;
+                    shippingFee = 41;
                     sizeCategory = "فائق الحجم";
                 } else if (weightKg <= 15) {
-                    shippingFee = 48;
+                    shippingFee = 51;
                     sizeCategory = "فائق الحجم";
                 } else if (weightKg <= 20) {
-                    shippingFee = 58;
+                    shippingFee = 61;
                     sizeCategory = "فائق الحجم";
                 } else if (weightKg <= 25) {
-                    shippingFee = 68;
+                    shippingFee = 71;
                     sizeCategory = "فائق الحجم";
                 } else if (weightKg <= 30) {
-                    shippingFee = 78;
+                    shippingFee = 81;
                     sizeCategory = "فائق الحجم";
                 } else {
                     // For weights above 30 kg, add 2 EGP per additional kg
                     const additionalWeight = weightKg - 30;
-                    shippingFee = 78 + additionalWeight * 2;
+                    shippingFee = 81 + additionalWeight * 2;
                     sizeCategory = "فائق الحجم";
                 }
                 break;
@@ -534,4 +534,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-
