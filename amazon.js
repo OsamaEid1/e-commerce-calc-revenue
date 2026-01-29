@@ -148,53 +148,54 @@ document.addEventListener("DOMContentLoaded", function () {
         commissionForUnder = +selectedOption.dataset.commForUnder;
         if (selectedOption.dataset.minimumCommFee) minimumCommissionFee = +selectedOption.dataset.minimumCommFee; 
     };
-    const setCommForDiscountedCommission = (selectedOption) => {
-        const offerType1StartDate = "08/01/2024";
-        const offerType1EndDate = "01/31/2025";
-        const offerType2StartDate = "08/01/2024";
-        const offerType2EndDate = "01/31/2025";
-        const offerType3StartDate = "01/01/2025";
-        const offerType3EndDate = "03/31/2025";
-        const offerType3DiscountBarrier = 300;
+    /* Deprecated for now By Amazon */
+    // const setCommForDiscountedCommission = (selectedOption) => {
+    //     const offerType1StartDate = "08/01/2024";
+    //     const offerType1EndDate = "01/31/2025";
+    //     const offerType2StartDate = "08/01/2024";
+    //     const offerType2EndDate = "01/31/2025";
+    //     const offerType3StartDate = "01/01/2025";
+    //     const offerType3EndDate = "03/31/2025";
+    //     const offerType3DiscountBarrier = 300;
 
-        switch (+selectedOption.dataset.offerType) {
-            case 1:
-                if (
-                    new Date(offerType1StartDate) <= new Date() &&
-                    new Date() <= new Date(offerType1EndDate)
-                )
-                    productComm = +selectedOption.dataset.offerDiscount;
-                else productComm = +selectedOption.value;
-                break;
-            case 2:
-                if (
-                    new Date(offerType2StartDate) <= new Date() &&
-                    new Date() <= new Date(offerType2EndDate)
-                )
-                    productComm = +selectedOption.dataset.offerDiscount;
-                else productComm = +selectedOption.value;
-                break;
-            case 3:
-                const priceToPay = totalCustomerPay
-                    ? +totalCustomerPay.value
-                    : +totalPriceInput.value;
-                if (
-                    priceToPay >= offerType3DiscountBarrier &&
-                    new Date(offerType3StartDate) <= new Date() &&
-                    new Date() <= new Date(offerType3EndDate)
-                )
-                    productComm = +selectedOption.dataset.offerDiscount;
-                else productComm = +selectedOption.value;
-                break;
+    //     switch (+selectedOption.dataset.offerType) {
+    //         case 1:
+    //             if (
+    //                 new Date(offerType1StartDate) <= new Date() &&
+    //                 new Date() <= new Date(offerType1EndDate)
+    //             )
+    //                 productComm = +selectedOption.dataset.offerDiscount;
+    //             else productComm = +selectedOption.value;
+    //             break;
+    //         case 2:
+    //             if (
+    //                 new Date(offerType2StartDate) <= new Date() &&
+    //                 new Date() <= new Date(offerType2EndDate)
+    //             )
+    //                 productComm = +selectedOption.dataset.offerDiscount;
+    //             else productComm = +selectedOption.value;
+    //             break;
+    //         case 3:
+    //             const priceToPay = totalCustomerPay
+    //                 ? +totalCustomerPay.value
+    //                 : +totalPriceInput.value;
+    //             if (
+    //                 priceToPay >= offerType3DiscountBarrier &&
+    //                 new Date(offerType3StartDate) <= new Date() &&
+    //                 new Date() <= new Date(offerType3EndDate)
+    //             )
+    //                 productComm = +selectedOption.dataset.offerDiscount;
+    //             else productComm = +selectedOption.value;
+    //             break;
 
-            default:
-                productComm = +selectedOption.value;
-                break;
-        }
+    //         default:
+    //             productComm = +selectedOption.value;
+    //             break;
+    //     }
 
-        // Set Updated Commission
-        if (updatedCommission) updatedCommission.value = productComm;
-    };
+    //     // Set Updated Commission
+    //     if (updatedCommission) updatedCommission.value = productComm;
+    // };
     const handleGetCategoryCommission = () => { 
         // Get the selected <option> element
         const selectedOption = productCategory.options[productCategory.selectedIndex];
@@ -204,12 +205,14 @@ document.addEventListener("DOMContentLoaded", function () {
             setCommForVariableCommission(selectedOption);
 
         // Handle Discounted FBA Commissions
-        if (selectedOption.dataset.offerType) {
-            setCommForDiscountedCommission(selectedOption);
-        } else if (productCategory.value !== "variable") {
-            // Handle Normal Commission
-            productComm = +selectedOption.value;
-            if (updatedCommission) updatedCommission.value = productComm;
+            /* Deprecated for now By Amazon */
+            /* if (selectedOption.dataset.offerType) {
+                setCommForDiscountedCommission(selectedOption);
+            } else  */
+        if (productCategory.value !== "variable") {
+        // Handle Normal Commission
+        productComm = +selectedOption.value;
+        if (updatedCommission) updatedCommission.value = productComm;
         }
 
         // Update the commission fee
@@ -245,22 +248,29 @@ document.addEventListener("DOMContentLoaded", function () {
         calcProfitsNumbers();
     };
     const calcEasyShipAsStandard = (weight) => {
-        const baseShippingFee = 45.5;
-        const weightIncrement = 2;
-        const maxWeight = 12;
-        const additionalFeePerKg = 2;
-        let shippingFees = baseShippingFee;
+        const pricePerUnit = parseFloat(pricePerUnitInput.value) || 0;
+        let shippingFees = 0;
+        const maxWeight = 22;
 
-        if (weight <= 0.25) shippingFees = baseShippingFee;
-        else if (weight <= 0.5) shippingFees = 51;
-        else if (weight <= 1) shippingFees = 53;
-        else if (weight <= 1.5) shippingFees = 57.5;
-        else if (weight <= weightIncrement) shippingFees = 59.5;
-        else if (weight > weightIncrement) {
-            // Calculate the number of additional kilograms over the base increment
-            const additionalKg = Math.min(weight, maxWeight) - weightIncrement;
-            // Add the additional fee based on the extra kilograms
-            shippingFees += additionalKg * additionalFeePerKg;
+        // Determine base shipping fee based on weight and price
+        if (weight <= 0.25) {
+            shippingFees = pricePerUnit <= 350 ? 46.5 : 52.5;
+        } else if (weight <= 0.5) {
+            shippingFees = pricePerUnit <= 350 ? 52 : 58;
+        } else if (weight <= 1) {
+            shippingFees = pricePerUnit <= 350 ? 54 : 60;
+        } else if (weight <= 1.5) {
+            shippingFees = pricePerUnit <= 350 ? 58.5 : 64.5;
+        } else if (weight <= 2) {
+            shippingFees = pricePerUnit <= 350 ? 60.5 : 66.5;
+        } else if (weight > 2 && weight <= maxWeight) {
+            // For weights above 2 kg, add 2 EGP per additional kg
+            const additionalWeight = weight - 2;
+            const baseFee = pricePerUnit <= 350 ? 60.5 : 66.5;
+            shippingFees = baseFee + additionalWeight * 2;
+        } else {
+            // Weight exceeds max limit
+            shippingFees = 0;
         }
 
         // Set Shipping Fees
@@ -268,15 +278,18 @@ document.addEventListener("DOMContentLoaded", function () {
         AmazonShippingTax.value = (shippingFees * 0.14).toFixed(2);
     };
     const calcEasyShipAsSuper = (weight) => {
-        const baseShippingFee = 55.5;
-        const weightIncrement = 1;
-        const additionalFeePerKg = 2;
-        let shippingFees = baseShippingFee;
+        const pricePerUnit = parseFloat(pricePerUnitInput.value) || 0;
+        let shippingFees = 0;
 
-        // Calculate the number of additional kilograms over the base increment
-        const additionalKg = Math.ceil(weight - weightIncrement);
-        // Add the additional fee based on the extra kilograms
-        shippingFees += additionalKg * additionalFeePerKg;
+        // Determine base shipping fee based on weight and price
+        if (weight <= 1) {
+            shippingFees = pricePerUnit <= 350 ? 56.5 : 62.5;
+        } else if (weight > 1) {
+            // For weights above 1 kg, add 2 EGP per additional kg
+            const additionalWeight = weight - 1;
+            const baseFee = pricePerUnit <= 350 ? 56.5 : 62.5;
+            shippingFees = baseFee + additionalWeight * 2;
+        }
 
         // Set Shipping Fees
         AmazonShippingFee.value = shippingFees;
@@ -305,163 +318,132 @@ document.addEventListener("DOMContentLoaded", function () {
             sizeCategory = "فائق الحجم";
         }
 
-        // Determine the shipping fee based on size and weight
-        let shippingFee;
+        // Determine the shipping fee based on size, weight, and price per unit
+        let shippingFee = 0;
+        const pricePerUnit = parseFloat(pricePerUnitInput.value) || 0;
+
         switch (sizeCategory) {
             case "المُغلف الصغير":
                 if (weightKg <= 0.1) {
-                    shippingFee = 17.5;
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 19.5 : 24.5;
                 } else {
                     shippingFee = "غير متاح"; // Weight exceeds the limit
                 }
+                break;
 
             case "المُغلف الأساسي":
                 if (weightKg <= 0.1) {
-                    shippingFee = 17.5;
-                    sizeCategory = "المُغلف الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 19.5 : 24.5;
                 } else if (weightKg <= 0.2) {
-                    shippingFee = 17.5;
-                    sizeCategory = "المُغلف الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 19.5 : 24.5;
                 } else if (weightKg <= 0.5) {
-                    shippingFee = 18.5;
-                    sizeCategory = "المُغلف الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 20.5 : 25.5;
+                } else {
+                    shippingFee = "غير متاح";
                 }
+                break;
 
             case "المُغلف الكبير":
                 if (weightKg <= 1) {
-                    shippingFee = 19;
-                    sizeCategory = "المُغلف الكبير";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 21 : 26;
+                } else {
+                    shippingFee = "غير متاح";
                 }
+                break;
 
             case "الطرد الأساسي":
                 if (weightKg <= 0.25) {
-                    shippingFee = 17.5;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 19.5 : 24.5;
                 } else if (weightKg <= 0.5) {
-                    shippingFee = 18.5;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 20.5 : 25.5;
                 } else if (weightKg <= 1) {
-                    shippingFee = 19;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 21 : 26;
                 } else if (weightKg <= 1.5) {
-                    shippingFee = 20;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 22 : 27;
                 } else if (weightKg <= 2) {
-                    shippingFee = 20.5;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 22.5 : 27.5;
                 } else if (weightKg <= 3) {
-                    shippingFee = 21.5;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 23.5 : 28.5;
                 } else if (weightKg <= 4) {
-                    shippingFee = 22.5;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 24.5 : 29.5;
                 } else if (weightKg <= 5) {
-                    shippingFee = 23.5;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 25.5 : 30.5;
                 } else if (weightKg <= 6) {
-                    shippingFee = 24.5;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 26.5 : 31.5;
                 } else if (weightKg <= 7) {
-                    shippingFee = 25.5;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 27.5 : 32.5;
                 } else if (weightKg <= 8) {
-                    shippingFee = 26.5;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 28.5 : 33.5;
                 } else if (weightKg <= 9) {
-                    shippingFee = 27.5;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 29.5 : 34.5;
                 } else if (weightKg <= 10) {
-                    shippingFee = 28.5;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 30.5 : 35.5;
                 } else if (weightKg <= 11) {
-                    shippingFee = 29.5;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 31.5 : 36.5;
                 } else if (weightKg <= 12) {
-                    shippingFee = 30.5;
-                    sizeCategory = "الطرد الأساسي";
-                    break;
+                    shippingFee = pricePerUnit <= 350 ? 32.5 : 37.5;
+                } else {
+                    shippingFee = "غير متاح";
                 }
+                break;
 
             case "فائق الحجم":
                 if (weightKg <= 1) {
-                    shippingFee = 23;
-                    sizeCategory = "فائق الحجم";
+                    shippingFee = pricePerUnit <= 350 ? 25 : 30;
                 } else if (weightKg <= 2) {
-                    shippingFee = 25;
-                    sizeCategory = "فائق الحجم";
+                    shippingFee = pricePerUnit <= 350 ? 27 : 32;
                 } else if (weightKg <= 3) {
-                    shippingFee = 27;
-                    sizeCategory = "فائق الحجم";
+                    shippingFee = pricePerUnit <= 350 ? 29 : 34;
                 } else if (weightKg <= 4) {
-                    shippingFee = 29;
-                    sizeCategory = "فائق الحجم";
+                    shippingFee = pricePerUnit <= 350 ? 31 : 36;
                 } else if (weightKg <= 5) {
-                    shippingFee = 31;
-                    sizeCategory = "فائق الحجم";
+                    shippingFee = pricePerUnit <= 350 ? 33 : 38;
                 } else if (weightKg <= 6) {
-                    shippingFee = 33;
-                    sizeCategory = "فائق الحجم";
+                    shippingFee = pricePerUnit <= 350 ? 35 : 40;
                 } else if (weightKg <= 7) {
-                    shippingFee = 35;
-                    sizeCategory = "فائق الحجم";
+                    shippingFee = pricePerUnit <= 350 ? 37 : 42;
                 } else if (weightKg <= 8) {
-                    shippingFee = 37;
-                    sizeCategory = "فائق الحجم";
+                    shippingFee = pricePerUnit <= 350 ? 39 : 44;
                 } else if (weightKg <= 9) {
-                    shippingFee = 39;
-                    sizeCategory = "فائق الحجم";
+                    shippingFee = pricePerUnit <= 350 ? 41 : 46;
                 } else if (weightKg <= 10) {
-                    shippingFee = 41;
-                    sizeCategory = "فائق الحجم";
+                    shippingFee = pricePerUnit <= 350 ? 43 : 48;
                 } else if (weightKg <= 15) {
-                    shippingFee = 51;
-                    sizeCategory = "فائق الحجم";
+                    shippingFee = pricePerUnit <= 350 ? 53 : 58;
                 } else if (weightKg <= 20) {
-                    shippingFee = 61;
-                    sizeCategory = "فائق الحجم";
+                    shippingFee = pricePerUnit <= 350 ? 63 : 68;
                 } else if (weightKg <= 25) {
-                    shippingFee = 71;
-                    sizeCategory = "فائق الحجم";
+                    shippingFee = pricePerUnit <= 350 ? 73 : 78;
                 } else if (weightKg <= 30) {
-                    shippingFee = 81;
-                    sizeCategory = "فائق الحجم";
+                    shippingFee = pricePerUnit <= 350 ? 83 : 88;
                 } else {
                     // For weights above 30 kg, add 2 EGP per additional kg
                     const additionalWeight = weightKg - 30;
-                    shippingFee = 81 + additionalWeight * 2;
-                    sizeCategory = "فائق الحجم";
+                    const baseFee = pricePerUnit <= 350 ? 83 : 88;
+                    shippingFee = baseFee + additionalWeight * 2;
                 }
+                break;
+
+            default:
+                shippingFee = "غير متاح";
                 break;
         }
 
         // Set the result
         packageType.value = sizeCategory;
-        AmazonShippingFee.value = shippingFee * quantityInput.value;
-        AmazonShippingTax.value = (shippingFee * 0.14).toFixed(2);
+        AmazonShippingFee.value = (shippingFee || 0) * quantityInput.value;
+        AmazonShippingTax.value = ((shippingFee || 0 )* 0.14).toFixed(2);
     }
+
 
     // Add event listeners to calc total price when inputs change
     costPerUnit.addEventListener("input", calcTotalPrice);
-    pricePerUnitInput.addEventListener("input", calcTotalPrice);
+    pricePerUnitInput.addEventListener("input", () => {
+        // Update Shipping Fee In Case of FBA
+        if (!customerShippingFee) calcFBAShippingFee();
+        // Update Total Price
+        calcTotalPrice();
+    });
     quantityInput.addEventListener("input", () => {
         // Update Shipping Fee In Case of FBA
         if (!customerShippingFee) calcFBAShippingFee();
