@@ -11,6 +11,9 @@
     <meta property="og:url" content="https://osamaeid1.github.io/e-commerce-calc-revenue/">
     <meta property="og:type" content="website">
     <title>حاسبة الأرباح | أمازون FBA</title>
+    <meta property="description"
+        content="احسب أرباحك وتكاليفك بدقة قبل تسعير منتجاتك على أمازون مصر. تجنب الخسائر واتخذ قرارات تسعير ذكية!">
+
     <link rel="icon" href="./assets/favicon.ico">
     <link rel="stylesheet" href="./css/output.css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -48,7 +51,7 @@
     <div class="flex m-3">
         <a href="./index.html"
             class="
-                block w-1/2 p-2 me-1 rounded-lg text-center text-xl font-extrabold
+                block w-1/2 p-2 me-1 rounded-lg text-center text-lg sm:text-xl font-extrabold
                 bg-slate-100 duration-300 hover:bg-slate-300
             "
         >
@@ -56,7 +59,7 @@
         </a>
         <a href=""
             class="
-                block flex-1 p-2 rounded-lg text-center text-xl font-extrabold
+                block flex-1 p-2 rounded-lg text-center text-lg sm:text-xl font-extrabold
                 bg-slate-300 shadow-md
             "
             >
@@ -107,55 +110,54 @@
 
                                 <!-- الصحة والعناية الشخصية -->
                                 <optgroup label="الصحة والعناية الشخصية">
-                                    <option value="0.11">الصحة والعناية الشخصية 11%</option>
-                                    <option value="0.15" data-offer-type="1" data-offer-discount="0.11">منتجات التجميل 15% - تُخفض ل11% في العرض 1
-                                    </option>
-                                    <option value="0.11" data-offer-type="2" data-offer-discount="0.10">أجهزة العناية الشخصية 11% - تُخفض ل10% في
-                                        العرض 2</option>
-                                    <option value="0.13" data-offer-type="1" data-offer-discount="0.11">العطور 13% - تُخفض ل11% في العرض 1</option>
+                                    <option value="0.115">الصحة والعناية الشخصية 11.5%</option>
+                                    <option value="0.12">منتجات التجميل (الجمال) 12%</option>
+                                    <option value="0.11">أجهزة العناية الشخصية 11%</option>
+                                    <option value="0.13">العطور 13%</option>
                                 </optgroup>
 
                                 <!-- الإلكترونيات -->
                                 <optgroup label="الإلكترونيات">
-                                    <option value="0.04" data-offer-type="1" data-offer-discount="0.035">التلفزيونات 4% - تُخفض ل3.5% في العرض 1
-                                    </option>
-                                    <option value="0.04" data-offer-type="1" data-offer-discount="0.035">المنتجات الترفيهية المنزلية 4% - تُخفض
-                                        ل3.5% في العرض 1</option>
-                                    <option value="0.04" data-offer-type="2" data-offer-discount="0.03">الهواتف المحمولة 4% - تُخفض ل3% في العرض 2
-                                    </option>
-                                    <option value="0.06" data-offer-type="2" data-offer-discount="0.04">أجهزة الكمبيوتر الشخصية 6%</option>
+                                    <option value="0.05">التلفزيونات 5%</option>
+                                    <option value="0.05">المنتجات الترفيهية المنزلية 5%</option>
+                                    <option value="0.045">الهواتف المحمولة 4.5%</option>
+                                    <option value="0.04">أجهزة الكمبيوتر الشخصية 4%</option>
                                     <option value="0.08">الإلكترونيات الاستهلاكية 8%</option>
-                                    <option value="0.07" data-offer-type="1" data-offer-discount="0.06">الأجهزة المنزلية الصغيرة 7% - تُخفض ل6% في
-                                        العرض 1</option>
-                                    <option value="0.04" data-offer-type="1" data-offer-discount="0.035">الأجهزة المنزلية الرئيسية 4% - تُخفض ل3.5%
-                                        في العرض 1</option>
+                                    <option value="variable" data-price-barrier="1000" data-comm-for-above="0.08"
+                                        data-comm-for-under="0.15">
+                                        الإكسسوارات الإلكترونية (بما في ذلك الأجهزة الصوتية اللاسلكية والمحمولة) - 15% حتى 1000 جنيه مصري،
+                                        و8% لما يزيد عن 1000 جنيه
+                                    </option>
+                                    <option value="0.07">الأجهزة المنزلية الصغيرة 7%</option>
+                                    <option value="0.05">الأجهزة المنزلية الرئيسية 5%</option>
                                     <option value="0.10">ألعاب الفيديو 10%</option>
-                                    <option value="0.03">أجهزة ألعاب فيديو 3%</option>
-                                    <option value="0.10">DVD / الفيديو والدي في دي 10%</option>
+                                    <option value="0.04">أجهزة ألعاب فيديو 4%</option>
+                                    <option value="0.11">DVD / الفيديو والدي في دي 11%</option>
                                 </optgroup>
 
                                 <!-- المنزل والحديقة -->
                                 <optgroup label="المنزل والحديقة">
                                     <option value="0.13">أثاث 13%</option>
                                     <option value="0.13">منتجات المنزل 13%</option>
-                                    <option value="0.11">المطبخ 11%</option>
+                                    <option value="0.115">المطبخ 11.5%</option>
                                     <option value="0.13">منتجات الأنشطة الخارجية والحدائق 13%</option>
-                                    <option value="0.14" data-offer-type="1" data-offer-discount="0.14">منتجات الحيوانات الأليفة 14% - تُخفض ل11% في
-                                        العرض 1</option>
+                                    <option value="0.14">منتجات الحيوانات الأليفة 14%</option>
                                 </optgroup>
 
                                 <!-- الألعاب ومنتجات الأطفال -->
                                 <optgroup label="الألعاب ومنتجات الأطفال">
-                                    <option value="0.13">الألعاب 13%</option>
-                                    <option value="0.08">منتجات الأطفال 8%</option>
+                                    <option value="0.13">لعب الأطفال 13%</option>
+                                    <option value="0.09">منتجات الأطفال 9%</option>
                                 </optgroup>
 
                                 <!-- الملابس والإكسسوارات -->
                                 <optgroup label="الملابس والإكسسوارات">
-                                    <option value="0.15" data-offer-type="3" data-offer-discount="0.10">الملابس والأحذية 15% - تُخفض ل10% في العرض 3</option>
-                                    <option value="0.15" data-offer-type="3" data-offer-discount="0.10">الأمتعة 15% - تُخفض ل10% في العرض 3</option>
-                                    <option value="0.12" data-offer-type="2" data-offer-discount="0.11">الساعات 12% - تُخفض ل11% في العرض 2</option>
-                                    <option value="variable" data-price-barrier="5000" data-comm-for-above="0.05" data-comm-for-under="0.19">
+                                    <option value="0.15">الملابس 15%</option>
+                                    <option value="0.15">الأحذية 15%</option>
+                                    <option value="0.15">الأمتعة 15%</option>
+                                    <option value="0.12">الساعات 12%</option>
+                                    <option value="variable" data-price-barrier="5000" data-comm-for-above="0.05"
+                                        data-comm-for-under="0.19">
                                         المجوهرات - 19% حتى 5000 جنيه مصري، و5% لما يزيد عن 5000 جنيه
                                     </option>
                                 </optgroup>
@@ -168,28 +170,25 @@
 
                                 <!-- الرياضة والأدوات -->
                                 <optgroup label="الرياضة والأدوات">
-                                    <option value="0.11">الرياضة 11%</option>
-                                    <option value="0.11">المنتجات المكتبية 11%</option>
-                                    <option value="0.11">لوازم الأعمال الصناعية والعلمية 11%</option>
-                                    <option value="0.11">أدوات 11%</option>
-                                    <option value="0.11">السيارات 11%</option>
-                                    <option value="0.06">الكاميرا 6%</option>
+                                    <option value="0.115">الرياضة 11.5%</option>
+                                    <option value="0.12">المنتجات المكتبية 12%</option>
+                                    <option value="0.11">الأدوات ومعدات تطوير المنزل 11%</option>
+                                    <option value="0.12">السيارات 12%</option>
+                                    <option value="0.07">الكاميرا 7%</option>
                                 </optgroup>
-                                
+
                                 <!-- الفئات المتغيرة -->
                                 <optgroup label="الفئات المتغيرة">
-                                    <option value="variable" data-price-barrier="1000" data-comm-for-above="0.08" data-comm-for-under="0.15">اكسسوارات
-                                        الإلكترونيات - 15٪ حتى 1000 جنيه مصري، و 8% لما يزيد عن 1000 جنيه</option>
-                                    <option value="variable" data-price-barrier="1000" data-comm-for-above="0.08" data-comm-for-under="0.15">أجهزة الصوت
-                                        المحمولة - 15% حتى 1000 جنيه مصري، و8% لما يزيد عن 1000 جنيه</option>
-                                    <option value="variable" data-price-barrier="250" data-comm-for-above="0.09" data-comm-for-under="0.03" data-minimum-comm-fee="0">البقالة - 3% حتى 250
-                                        جنيه مصري، و9% لما يزيد عن 250 جنيه</option>
+                                    <option value="variable" data-price-barrier="250" data-comm-for-above="0.10" data-comm-for-under="0.04"
+                                        data-minimum-comm-fee="0">
+                                        البقالة - 4% حتى 250 جنيه مصري، و10% لما يزيد عن 250 جنيه
+                                    </option>
                                 </optgroup>
 
                                 <!-- الفئات الأخرى -->
                                 <optgroup label="الفئات الأخرى">
                                     <option value="0.10">بطاقات الهدايا 10%</option>
-                                    <option value="0.10">الطوابع 10%</option>
+                                    <option value="0.10">مقتنيات الطوابع العتيقة 10%</option>
                                     <option value="0.10">جميع الفئات الأخرى 10%</option>
                                 </optgroup>
                             </select>
@@ -344,6 +343,8 @@
     <footer class="text-center mt-7 mb-1">أُنشِئَ بال❤️ بواسطة
         <a href="https://osamaeid1.github.io/Portfolio/" target="_blank"
             class="text-red-500 underline font-bold ms-1">أسامة</a>
+        /<a href="https://wa.me/+201142014769" target="_blank"
+            class="text-green-500 underline font-bold ms-1">تواصل معي</a>
     </footer>
     <!-- End Footer -->
 
