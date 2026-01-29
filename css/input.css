@@ -19,7 +19,7 @@ input {
 
 
 .content-box {
-    @apply max-w-4xl mx-auto bg-white pt-0 rounded-lg shadow-lg;
+    @apply max-w-4xl mx-auto bg-white pt-3 rounded-lg shadow-lg;
 }
 
 .main-input {
@@ -37,4 +37,5 @@ input {
 
 .input-cell {
     padding: 0.5rem /* 12px */;
+
 }
