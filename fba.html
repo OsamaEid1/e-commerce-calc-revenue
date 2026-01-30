@@ -107,32 +107,24 @@
                         <td class="input-cell">
                             <select id="productCategory"
                                 class="w-full p-2 cursor-pointer border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
-
                                 <!-- الصحة والعناية الشخصية -->
                                 <optgroup label="الصحة والعناية الشخصية">
                                     <option value="0.115">الصحة والعناية الشخصية 11.5%</option>
-                                    <option value="0.12">منتجات التجميل (الجمال) 12%</option>
+                                    <option value="0.15">منتجات التجميل 15%</option>
                                     <option value="0.11">أجهزة العناية الشخصية 11%</option>
                                     <option value="0.13">العطور 13%</option>
                                 </optgroup>
 
-                                <!-- الإلكترونيات -->
-                                <optgroup label="الإلكترونيات">
-                                    <option value="0.05">التلفزيونات 5%</option>
-                                    <option value="0.05">المنتجات الترفيهية المنزلية 5%</option>
-                                    <option value="0.045">الهواتف المحمولة 4.5%</option>
-                                    <option value="0.04">أجهزة الكمبيوتر الشخصية 4%</option>
-                                    <option value="0.08">الإلكترونيات الاستهلاكية 8%</option>
-                                    <option value="variable" data-price-barrier="1000" data-comm-for-above="0.08"
-                                        data-comm-for-under="0.15">
-                                        الإكسسوارات الإلكترونية (بما في ذلك الأجهزة الصوتية اللاسلكية والمحمولة) - 15% حتى 1000 جنيه مصري،
-                                        و8% لما يزيد عن 1000 جنيه
+                                <!-- الملابس والإكسسوارات -->
+                                <optgroup label="الملابس والإكسسوارات">
+                                    <option value="0.15">الملابس 15%</option>
+                                    <option value="0.15">الأحذية 15%</option>
+                                    <option value="0.15">الأمتعة 15%</option>
+                                    <option value="0.12">الساعات 12%</option>
+                                    <option value="variable" data-price-barrier="5000" data-comm-for-above="0.05"
+                                        data-comm-for-under="0.19">
+                                        المجوهرات - 19% حتى 5000 جنيه مصري، و5% لما يزيد عن 5000 جنيه
                                     </option>
-                                    <option value="0.07">الأجهزة المنزلية الصغيرة 7%</option>
-                                    <option value="0.05">الأجهزة المنزلية الرئيسية 5%</option>
-                                    <option value="0.10">ألعاب الفيديو 10%</option>
-                                    <option value="0.04">أجهزة ألعاب فيديو 4%</option>
-                                    <option value="0.11">DVD / الفيديو والدي في دي 11%</option>
                                 </optgroup>
 
                                 <!-- المنزل والحديقة -->
@@ -150,22 +142,24 @@
                                     <option value="0.09">منتجات الأطفال 9%</option>
                                 </optgroup>
 
-                                <!-- الملابس والإكسسوارات -->
-                                <optgroup label="الملابس والإكسسوارات">
-                                    <option value="0.15">الملابس 15%</option>
-                                    <option value="0.15">الأحذية 15%</option>
-                                    <option value="0.15">الأمتعة 15%</option>
-                                    <option value="0.12">الساعات 12%</option>
-                                    <option value="variable" data-price-barrier="5000" data-comm-for-above="0.05"
-                                        data-comm-for-under="0.19">
-                                        المجوهرات - 19% حتى 5000 جنيه مصري، و5% لما يزيد عن 5000 جنيه
-                                    </option>
-                                </optgroup>
-
                                 <!-- الكتب والبرمجيات -->
                                 <optgroup label="الكتب والبرمجيات">
                                     <option value="0.07">الكتب 7%</option>
                                     <option value="0.10">برمجيات 10%</option>
+                                </optgroup>
+
+                                <!-- الإلكترونيات -->
+                                <optgroup label="الإلكترونيات">
+                                    <option value="0.05">التلفزيونات 5%</option>
+                                    <option value="0.05">المنتجات الترفيهية المنزلية 5%</option>
+                                    <option value="0.045">الهواتف المحمولة 4.5%</option>
+                                    <option value="0.04">أجهزة الكمبيوتر الشخصية 4%</option>
+                                    <option value="0.08">الإلكترونيات الاستهلاكية 8%</option>
+                                    <option value="0.07">الأجهزة المنزلية الصغيرة 7%</option>
+                                    <option value="0.05">الأجهزة المنزلية الرئيسية 5%</option>
+                                    <option value="0.10">ألعاب الفيديو 10%</option>
+                                    <option value="0.04">أجهزة ألعاب فيديو 4%</option>
+                                    <option value="0.11">DVD / الفيديو والدي في دي 11%</option>
                                 </optgroup>
 
                                 <!-- الرياضة والأدوات -->
@@ -179,6 +173,11 @@
 
                                 <!-- الفئات المتغيرة -->
                                 <optgroup label="الفئات المتغيرة">
+                                    <option value="variable" data-price-barrier="1000" data-comm-for-above="0.08"
+                                        data-comm-for-under="0.15">
+                                        اكسسوارات الإلكترونيات (بما في ذلك الأجهزة الصوتية اللاسلكية والمحمولة) - 15% حتى 1000 جنيه مصري،
+                                        و8% لما يزيد عن 1000 جنيه
+                                    </option>
                                     <option value="variable" data-price-barrier="250" data-comm-for-above="0.10" data-comm-for-under="0.04"
                                         data-minimum-comm-fee="0">
                                         البقالة - 4% حتى 250 جنيه مصري، و10% لما يزيد عن 250 جنيه
@@ -189,6 +188,8 @@
                                 <optgroup label="الفئات الأخرى">
                                     <option value="0.10">بطاقات الهدايا 10%</option>
                                     <option value="0.10">مقتنيات الطوابع العتيقة 10%</option>
+                                    <option value="0.12">الآلات الموسيقية 12%</option>
+                                    <option value="0.10">الموسيقى 10%</option>
                                     <option value="0.10">جميع الفئات الأخرى 10%</option>
                                 </optgroup>
                             </select>
@@ -310,6 +311,12 @@
         <div class="">
             <h3 class="font-medium">روابط مفيدة:</h3>
             <ul class="list-disc ps-8">
+                <li>
+                    <a class="underline duration-300 hover:no-underline hover:text-blue-600" target="_blank"
+                        href="https://sellercentral.amazon.eg/help/hub/reference/GXLHMQMHGF93LB9F">
+                        جدول العروض على العمولة لبائعي FBA مُفعّلة حتى 30 يونيو 2026 (ملحوظة: يمكنك وضع العمولة الخاصة بك بعد التخفيض في خانة "العمولة %")
+                    </a>
+                </li>
                 <li>
                     <a class="underline duration-300 hover:no-underline hover:text-blue-600" target="_blank"
                         href="https://sell.amazon.eg/pricing?ref_=sdeg_soa_priov_n">
