@@ -217,7 +217,7 @@ const calcSellerShippingFee = () => {
     calcProfitsNumbers();
 };
 const calcSellerShippingFeeAsStandard = (weight) => {
-    const baseShippingFee = 36;
+    const baseShippingFee = 43;
     const weightIncrement = 2;
     const maxWeight = 12;
     const additionalFeePerKg = 2;
@@ -225,10 +225,10 @@ const calcSellerShippingFeeAsStandard = (weight) => {
     let updatedShippingFee = baseShippingFee;
 
     if (weight <= 0.25) updatedShippingFee = baseShippingFee;
-    else if (weight <= 0.5) updatedShippingFee = 41;
-    else if (weight <= 1) updatedShippingFee = 43;
-    else if (weight <= 1.5) updatedShippingFee = 45;
-    else if (weight <= weightIncrement) updatedShippingFee = 47;
+    else if (weight <= 0.5) updatedShippingFee = 48.5;
+    else if (weight <= 1) updatedShippingFee = 50;
+    else if (weight <= 1.5) updatedShippingFee = 55;
+    else if (weight <= weightIncrement) updatedShippingFee = 57;
     else if (weight > weightIncrement) {
         const diffWeight = maxWeight - weight;
         const additionalFee = diffWeight * additionalFeePerKg;
@@ -242,28 +242,28 @@ const calcSellerShippingFeeAsStandard = (weight) => {
     shippingTax.value = (updatedShippingFee * 0.14).toFixed(2);
 };
 const calcSellerShippingFeeAsSuper = (weight) => {
-    const baseShippingFee = 45;
+    const baseShippingFee = 53;
     const additionalFeePerKg = 2;
     let updatedShippingFee = baseShippingFee;
 
     if (weight <= 1) updatedShippingFee = baseShippingFee;
-    else if (weight <= 2) updatedShippingFee = 47;
-    else if (weight <= 3) updatedShippingFee = 50;
+    else if (weight <= 2) updatedShippingFee = 55;
+    else if (weight <= 3) updatedShippingFee = 57;
     else if (weight <= 4 || weight <= 10) {
-        if (weight == 10) updatedShippingFee = 64;
+        if (weight == 10) updatedShippingFee = 71;
         else {
             const diffWeight = 10 - weight;
             const additionalFee = diffWeight * additionalFeePerKg;
-            updatedShippingFee = 64 - additionalFee;
+            updatedShippingFee = 71 - additionalFee;
         }
-    } else if (weight <= 15) updatedShippingFee = 66;
-    else if (weight <= 20) updatedShippingFee = 76;
-    else if (weight <= 25) updatedShippingFee = 86;
-    else if (weight <= 30) updatedShippingFee = 96;
+    } else if (weight <= 15) updatedShippingFee = 73;
+    else if (weight <= 20) updatedShippingFee = 83;
+    else if (weight <= 25) updatedShippingFee = 93;
+    else if (weight <= 30) updatedShippingFee = 103;
     else {
         const diffWeight = weight - 30;
         const additionalFee = diffWeight * additionalFeePerKg;
-        updatedShippingFee = 96 + additionalFee;
+        updatedShippingFee = 103 + additionalFee;
     }
 
     // Handle Pickup Fees / Add 2 egy pounds for pickup service
